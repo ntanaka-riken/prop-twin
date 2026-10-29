@@ -1,5 +1,9 @@
 # prop-twin — JAPAN SCIENTIST AI JAM SESSION 2026 のプロペラ・デジタルツイン
 
+![3D ツインで回転数制御 1500→2500→1000→2000 rpm を動かしたところ](media/twin3d_rpmctl.webp)
+
+*[`twin/twin3d.html`](twin/twin3d.html) で閉ループ回転数制御 `rpm:set` 1500 → 2500 → 1000 → 2000 rpm を動かしたところ(左:実機の 3D スキャン + プロペラ、右:回転数・電圧・電流・トルク・電力・推力)*
+
 [JAPAN SCIENTIST AI JAM SESSION 2026](https://www.riken.jp/pr/events/lectures/20261027_1/index.html)(理化学研究所 TRIP 事業本部・AGIS 主催)で取り組んだ内容です。2026-10-28(東京・AP日本橋)と 10-29(理研神戸 R-CCS)の本番セッションに両日とも参加し、AI エージェント(Claude Code、Codex)を共同研究者として、机の上の小さな装置のデジタルツインを 2 日間で作りました。
 
 - **装置**:Switch Science ESPr Developer(ESP8266)+ L293D(2 ブリッジ並列)+ 130 級 DC モーター + 3 枚羽根プロペラ(紙コップ上)
@@ -7,6 +11,16 @@
 - **計測**:iPhone 動画(音声・羽根の追跡)、ESPr の ADC、電子天秤による推力、RealityKit Object Capture の 3D スキャン
 - **ツイン**:PWM 1 周期ごとに解く電気系 + 機械系 + BEMT(翼素運動量理論)の空力。2D / 3D のブラウザ版は Web Serial で実機の値を重ねて表示([`twin/`](twin/))
 - **主な結果**:K = 6.06e-3 V·s/rad を ADC で直接測定、推力 1.9 gf @ 3164 rpm、部分 duty の 13 観測を ±1.5σ で再現、閉ループで 1000–2500 rpm を ±1 % で保持
+
+## 使った AI エージェント
+
+| エージェント(モデル) | 時期 | 取り組んだこと |
+|---|---|---|
+| Claude Code(Claude Opus 5.5、デスクトップアプリ) | 10-28 午後〜10-29 | v36 ファームの修正と機能追加、動画・ADC・天秤の解析、ツイン本体と同定、BEMT、2D / 3D のブラウザ版、記録の整理と公開 |
+| Codex(GPT-6.1 Sol、VS Code) | 10-28 午前〜10-29 午前 | モーター未接続での USB・通信の立ち上げ、フラッシュの退避、専用 AP 経由の OTA、出力を無効にした制御ロジックの dry-run 14 項目 |
+| Hermes Agent + RiVault(GLM-5.3-Flash) | 10-25〜26(会期前の準備)、10-29 | 会期前に ESP32(ELEGOO キット)と ESPr Developer のシリアル接続・書き込み・OTA の手順を確立し、FLIR サーモカメラで Mac の発熱を記録。10-29 にその作業記録を学習データ用に書き出し(秘密情報・LAN IP・SSID をマスク) |
+
+10-29 には、これら 3 種類のエージェントの作業記録をまとめて、Nemotron 3.5 Lightning 30B-A3B と Super VL を rikyu(GB200)で LoRA 微調整し、このツイン上で実機操作を模した課題で評価する実験も行いました(結果は [2 日目の日報](docs/daily/2026-10-29.md))。
 
 経緯は [`docs/HISTORY.md`](docs/HISTORY.md)、日ごとの要約は [1 日目 10-28](docs/daily/2026-10-28.md)・[2 日目 10-29](docs/daily/2026-10-29.md) にあります。
 
