@@ -8,7 +8,7 @@ Switch Science **ESPr Developer**(ESP-WROOM-02 / ESP8266)で **L293D による D
 
 ## 開発の記録
 
-2026-10-28〜29 に、動画・ADC・電子天秤で測りながらデジタルツインを作った経緯を [`docs/HISTORY.md`](docs/HISTORY.md) にまとめています。
+2026-10-28〜29 に、動画・ADC・電子天秤で測りながらデジタルツインを作った経緯を [`docs/HISTORY.md`](docs/HISTORY.md) にまとめています。日ごとの要約は [`docs/daily/`](docs/daily/)(例:[2026-10-29](docs/daily/2026-10-29.md))。
 
 | フォルダ | 内容 |
 |---|---|
