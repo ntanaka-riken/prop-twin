@@ -5,7 +5,6 @@ ESPr Developer + L293D + 130 級 DC モーター + 3 枚羽根プロペラ(紙�
 - **会話の全記録**:[`transcripts/`](../transcripts/)(読みやすい版と、ツールの入出力を省略しない版)。生ログ(JSONL)はリリースに添付しています。いずれもメールアドレス、ホームフォルダのパス、計算機のホスト名とユーザー ID を伏せ字にしてあります。
 - **動画・3D スキャン・作業用フォルダ**:GitHub のリリース [`media-2026-10-29`](https://github.com/ntanaka-riken/prop-twin/releases/tag/media-2026-10-29) に、元の画質のまま添付しています。一覧と取得方法は [`media/README.md`](../media/README.md)。動画は撮影場所の位置情報を消し、写真はメタデータのない JPEG にしてあります。
 - **解析コード**:[`analysis/`](../analysis/)(作業中に書いたスクリプト)と [`twin/`](../twin/)(整理したツイン本体と同定)。
-- **v1〜v35**(Wi-Fi / OTA 時代のマルチデバイス版)は、別リポジトリ `ntanaka-riken/blink-ota-esp8266` にあります。
 
 ## 1 日目(10/28、東京・AP日本橋):ファームを整え、動画からツインを作る
 

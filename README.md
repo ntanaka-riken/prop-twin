@@ -1,14 +1,14 @@
-# blink_ota_esp8266_v36
+# prop-twin — JAPAN SCIENTIST AI JAM SESSION 2026 のプロペラ・デジタルツイン
 
-Switch Science **ESPr Developer**(ESP-WROOM-02 / ESP8266)で **L293D による DC モーターを制御する**、シリアル専用ファームウェアです。
+[JAPAN SCIENTIST AI JAM SESSION 2026](https://www.riken.jp/pr/events/lectures/20261027_1/index.html)(理化学研究所 TRIP 事業本部・AGIS 主催)で取り組んだ内容です。2026-10-28(東京・AP日本橋)と 10-29(理研神戸 R-CCS)の本番セッションに両日とも参加し、AI エージェント(Claude Code、Codex)を共同研究者として、机の上の小さな装置のデジタルツインを 2 日間で作りました。
 
-> **JAPAN SCIENTIST AI JAM SESSION 2026 での取り組み**
->
-> このリポジトリは、理化学研究所 TRIP 事業本部・AGIS 主催の [JAPAN SCIENTIST AI JAM SESSION 2026](https://www.riken.jp/pr/events/lectures/20261027_1/index.html)で取り組んだ内容です。2026-10-28(東京・AP日本橋)と 10-29(理研神戸 R-CCS)の本番セッションに両日とも参加しました。研究者が自分の課題を持ち寄り、AI エージェントを共同研究者として使ってみるイベントの課題として、Claude Code と一緒に装置のファームを整え、動画・ADC・電子天秤の計測からプロペラのデジタルツインを作りました。経緯は [`docs/HISTORY.md`](docs/HISTORY.md)、日ごとの要約は [1 日目 10-28](docs/daily/2026-10-28.md)・[2 日目 10-29](docs/daily/2026-10-29.md) にあります。
+- **装置**:Switch Science ESPr Developer(ESP8266)+ L293D(2 ブリッジ並列)+ 130 級 DC モーター + 3 枚羽根プロペラ(紙コップ上)
+- **ファーム**:USB シリアル 1 行 1 コマンドの `blink_ota_esp8266_v36.ino`。会期中に、動画同期用 LED、ADC の逆起電力プローブと回転計(`adc:*`)、閉ループ回転数制御(`rpm:set`)、テレメトリ(`tel:on`)を加えました
+- **計測**:iPhone 動画(音声・羽根の追跡)、ESPr の ADC、電子天秤による推力、RealityKit Object Capture の 3D スキャン
+- **ツイン**:PWM 1 周期ごとに解く電気系 + 機械系 + BEMT(翼素運動量理論)の空力。2D / 3D のブラウザ版は Web Serial で実機の値を重ねて表示([`twin/`](twin/))
+- **主な結果**:K = 6.06e-3 V·s/rad を ADC で直接測定、推力 1.9 gf @ 3164 rpm、部分 duty の 13 観測を ±1.5σ で再現、閉ループで 1000–2500 rpm を ±1 % で保持
 
-- Wi-Fi / OTA / UDP / センサー類は**すべて削除**(v36 シリアル専用ビルド)。接続デバイスは L293D と、動画同期用の LED 1個(IO14)です。
-- 制御は **USB シリアル 115200 baud、1行 = 1コマンド**。Wi-Fi 環境に依存しないため、ルーター設定の如何にかかわらず同じ手順で運用できます。
-- v1〜v35 のマルチデバイス版(マトリクス/OLED/BME280/MPU-6050/NeoPixel/サーボ/ステッパー/DHT)の履歴は `~/Documents/esp32/blink_ota_esp8266`(GitHub: ntanaka-riken/blink-ota-esp8266, private)に保存されています。
+経緯は [`docs/HISTORY.md`](docs/HISTORY.md)、日ごとの要約は [1 日目 10-28](docs/daily/2026-10-28.md)・[2 日目 10-29](docs/daily/2026-10-29.md) にあります。
 
 ## 開発の記録
 
@@ -120,7 +120,7 @@ Ready. Type a command (stat | dcm:speed 255 | dcm:ramp 80 5000 | ...)
 [HB] 11025 ...
 ```
 
-v36 は Wi-Fi を持たないため、**書き込み直後から即座に**このシーケンスが始まります(v35 までの30秒 Wi-Fi 待ちはありません)。
+v36 は Wi-Fi を持たないため、**書き込み直後から即座に**このシーケンスが始まります。
 
 ## 実測データ(このモーター+ドライバーでの測定値)
 
@@ -152,7 +152,7 @@ v36 は Wi-Fi を持たないため、**書き込み直後から即座に**こ�
 |---|---|
 | `generic` | 現行 esp8266 コアに ESPr Developer 専用定義はないため Generic ESP8266 Module を使用 |
 | `eesz=2M512` | 2MB flash、FS 512KB → スケッチ+OTA領域 ~1.5MB(2スロット各 ~768KB) |
-| `ip=lm2f` | lwIP v2 Lower Memory(v35 までの Wi-Fi 時代の実績設定。v36 は Wi-Fi コード自体が無いため動作への影響なし) |
+| `ip=lm2f` | lwIP v2 Lower Memory(Wi-Fi コードが無いため動作への影響なし) |
 
 - シリアル書き込みは RTS ハードリセットで自動的にブートローダーへ入り、書き込み後にハッシュ検証されます(115200 baud で 283KB ≈ 20秒)。
 - 書き込みはブートローダー+アプリ領域のみを上書きします。
@@ -167,11 +167,3 @@ v36 は Wi-Fi を持たないため、**書き込み直後から即座に**こ�
 | `/dev/cu.usb*` が出ない | データ対応ケーブルか確認(給電専用ケーブルは通信不可)。再挿入で復帰するか試す |
 | 書き込みがタイムアウト | ケーブル再挿入のうえ再実行。`arduino-cli upload` は RTS 自動リセットするためボタン操作は不要 |
 | コマンドが無反応 | `[HB]` が出ているか確認。出ていれば受信側(ケーブル/アプリ)の問題、出ていなければボード側 |
-
-## バージョン履歴(要約)
-
-| 版 | 内容 |
-|---|---|
-| v1-v34 | Wi-Fi/OTA + 全デバイス版(履歴は元リポジトリへ)。v31-34 で L293D ランプ系実装・しきい値測定 |
-| v35 | スリム化(シリアル+UDP+L293D)。ピン変更 INA=IO12/INB=IO13/EN=IO15 |
-| **v36** | **シリアル専用化(Wi-Fi/OTA/UDP/プロビジョニング削除)。本フォルダの内容** |
