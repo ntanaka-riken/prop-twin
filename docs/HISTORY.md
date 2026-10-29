@@ -47,6 +47,7 @@ ESPr Developer + L293D + 130 級 DC モーター + 3 枚羽根プロペラ(紙�
 | 15:43 | ブートシーケンスの推力 → 「推力が大きめでは?」 | `IMG_5781`、`analysis/day2/thrust_checks.py boot` |
 | 15:53 | **6 s ずつ止めて推力を測り直し**(3 回目で撮影成功)。回転数も `TEL` で同時に記録 → 推力は回転数の 2.23 乗で、旧ツインは部分 duty で 15〜20 % 大きかった。**揚力の効きを Re の 0.49 乗**にして同定し直し | `IMG_5785`、`--preset thrust`、`analysis/day2/thrust_checks.py steps`、`twin/data/thrust_steps_IMG_5785.json` |
 | 16:10– | GitHub リポジトリ `prop-twin` を作成。動画・写真・3D データ・解析コード・会話の記録を追加 | このファイル |
+| 16:40 | **天秤に載せた装置の周回動画から 3D モデル**(228 フレーム)。机の面で水平、紙コップの寸法で縮尺(3 通りで ±1.3 %)→ ミリ単位のメッシュ。プロペラ直径 64.0 mm、コップ上面からの高さ 11.8 mm(逆転の地面効果の計算では 14 mm としていた) | `IMG_5782`、`analysis/day2/rig_scan_5782/`、リリースの `scan_rig_balance_IMG_5782.zip`、`media/3d/rig_balance_scan_*` |
 
 ## 主な数値の移り変わり
 

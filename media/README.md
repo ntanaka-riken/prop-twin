@@ -6,7 +6,7 @@
 - **写真と小さな図**はこのフォルダに直接入れています。
 - **個人情報の処理**:iPhone の動画には撮影場所の緯度経度(ISO 6709)が入っていたので、映像と音声はそのままに、位置情報の文字列だけをゼロで上書きしました。HEIC の写真はメタデータを含まない JPEG(元の解像度、品質 95)に変換しています。zip の中の JPEG も、Exif を持つものは作り直しました。会話の記録と作業用フォルダのテキストからは、メールアドレス、ホームフォルダのパス、計算機のホスト名とユーザー ID を伏せ字にしています。
 
-## リリースに添付(19 個、計 1.34 GB)
+## リリースに添付(20 個、計 1.54 GB)
 
 | ファイル | 種類 | 大きさ | 内容 |
 |---|---|---|---|
@@ -21,10 +21,11 @@
 | `IMG_5779.MOV` | 動画 | 159.8 MB | day 2: forward / reverse x3 on the balance (reverse jet returns to the pan) (location metadata zeroed: 2) |
 | `IMG_5780.MOV` | 動画 | 104.0 MB | day 2: propeller off, forward / reverse x4 (motor's own asymmetry) (location metadata zeroed: 2) |
 | `IMG_5781.MOV` | 動画 | 15.4 MB | day 2: boot-sequence button over Web Serial, balance tared (location metadata zeroed: 2) |
-| `IMG_5782.MOV` | 動画 | 41.4 MB | day 2: orbit of the rig on the balance (not processed) (location metadata zeroed: 2) |
+| `IMG_5782.MOV` | 動画 | 41.4 MB | day 2: orbit of the rig on the balance → `scan_rig_balance_IMG_5782.zip` (location metadata zeroed: 2) |
 | `IMG_5785.MOV` | 動画 | 115.9 MB | day 2: steady thrust steps 100/80/60/50/40 % x2 with TEL -> Re-dependent lift (location metadata zeroed: 2) |
 | `scan_rig_IMG_5755.zip` | 3D スキャン | 123.1 MB | Object Capture of the whole rig (IMG_5755, 159 frames): usdz, obj/mtl, textures, frames, scan.swift, alignment intermediates |
 | `scan_prop_IMG_5778.zip` | 3D スキャン | 191.8 MB | Object Capture of the propeller alone (IMG_5778, 230 frames): usdz, obj/mtl, textures, frames, pitch/section analysis |
+| `scan_rig_balance_IMG_5782.zip` | 3D スキャン | 196.6 MB | Object Capture of the rig on the balance (IMG_5782, 228 frames): usdz, obj/mtl, **rig_balance_mm.obj (levelled, mm, scaled with the paper cup ±1.3 %)**, textures, frames, meta (propeller D 64.0 mm), scripts |
 | `analysis_scratch_day1.zip` | 作業用フォルダ | 51.8 MB | day-1/2 morning scratch folder as it was (audio wav, frames, montages, intermediates, scripts) |
 | `analysis_scratch_day2.zip` | 作業用フォルダ | 139.1 MB | day-2 afternoon scratch folder (frame sheets, display crops, comb results, BEMT probes) |
 | `session_day1_2026-10-28_29_raw.jsonl.gz` | 会話の生ログ | 32.0 MB | raw Claude Code session log, day1_2026-10-28_29 (email, home path, HPC host/user removed) |
@@ -57,5 +58,7 @@
 | [`3d/rig_scan_prop_region.png`](3d/rig_scan_prop_region.png) | 0.3 MB | propeller region of the rig scan (not reconstructable) |
 | [`3d/prop_scan_top.png`](3d/prop_scan_top.png) | 0.2 MB | propeller scan from above (true colour, height) |
 | [`3d/prop_scan_unwrap_first_try.png`](3d/prop_scan_unwrap_first_try.png) | 35 kB | first cylinder cut (wrong radius) |
+| [`3d/rig_balance_scan_views_mm.png`](3d/rig_balance_scan_views_mm.png) | 398 kB | IMG_5782 scan in mm, top and side |
+| [`3d/rig_balance_scan_meta.json`](3d/rig_balance_scan_meta.json) | 1 kB | IMG_5782 scan: scale checks and dimensions |
 
 会話の記録(読みやすい版)は [`../transcripts/`](../transcripts/) にあります。

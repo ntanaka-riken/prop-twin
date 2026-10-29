@@ -1,0 +1,19 @@
+{
+ "source": "IMG_5782.MOV, 228 of 1076 frames, RealityKit Object Capture full",
+ "units": "mm",
+ "mm_per_scan_unit": 265.2,
+ "scale_checks": {
+  "cup_height": 263.8,
+  "cup_base": 269.1,
+  "cup_top": 262.5
+ },
+ "scale_note": "paper cup from the IMG_5755 scan: height 91.6, base 75.6, top 49.6 mm",
+ "balance_pan_height_mm": 25.4,
+ "cup_top_height_mm": 117.4,
+ "propeller": {
+  "diameter_mm_p99": 64.0,
+  "top_height_mm": 137.5,
+  "height_above_cup_top_mm": 11.8
+ },
+ "frame": "origin on the cup axis at table level; x/z horizontal, y up (OBJ written y-up)"
+}

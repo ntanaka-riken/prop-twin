@@ -27,12 +27,13 @@
 | `display_crops.py` | IMG_5779 / 5781 / 5785 | 天秤の表示を各区間の後半で切り出して並べる(読み取りは目視、結果は `twin/data/*.json`) |
 | `direction_and_motor.py` | IMG_5779 / 5780 | 正転・逆転の差をドリフトを除いて求め、モーター自体の方向差がプロペラ付きでどう効くかを 3 つの仮説で計算 |
 | `bare_ripple.py` | ADC(`tools/bare_speed_adc.py`) | プロペラなしの全速を整流子リップルから(73.6 Hz) |
+| `rig_scan_5782/` | IMG_5782 | 天秤に載せた装置の 3D 復元を水平にし(`scan_views.py`)、紙コップを円錐で当てはめて縮尺を決め(`scale_cup.py`)、ミリ単位の OBJ と寸法を書き出す(`export_mm.py`) |
 | `thrust_checks.py` | IMG_5781 / 5785 | ブートシーケンス中の推力と天秤の遅れ、6 s ずつの推力と `TEL` の回転数 → 推力 ∝ n^2.23 |
 
 実行例(プロジェクトのフォルダで。動画はリリースから取得):
 
 ```bash
-python3 analysis/day2/sync_audio.py media/videos/IMG_5785.MOV twin/data/thrust_steps3_hostlog.json --search 2 12
+python3 analysis/day2/sync_audio.py media/release/IMG_5785.MOV twin/data/thrust_steps3_hostlog.json --search 2 12
 python3 analysis/day2/thrust_checks.py steps
 ```
 
