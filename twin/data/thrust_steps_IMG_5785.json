@@ -1,0 +1,106 @@
+{
+ "source": "IMG_5785.MOV (balance tared, 30 fps) + data/thrust_steps3_hostlog.json (TEL tachometer)",
+ "video_minus_host": 6.74,
+ "sync": "brush-noise envelope vs command times (corr 0.74)",
+ "method": "balance read every 0.5 s over the last 4 s of each 6 s step, two passes; rpm = TEL mean over the same window",
+ "steps": [
+  {
+   "duty": 255,
+   "rpm": [
+    3044,
+    3090
+   ],
+   "rpm_mean": 3067,
+   "balance_g": [
+    1.675,
+    1.675
+   ],
+   "balance_mean": 1.675,
+   "twin_gf": 1.698
+  },
+  {
+   "duty": 204,
+   "rpm": [
+    2197,
+    2171
+   ],
+   "rpm_mean": 2184,
+   "balance_g": [
+    0.71,
+    0.76
+   ],
+   "balance_mean": 0.735,
+   "twin_gf": 0.854
+  },
+  {
+   "duty": 153,
+   "rpm": [
+    1597,
+    1588
+   ],
+   "rpm_mean": 1592,
+   "balance_g": [
+    0.36,
+    0.41
+   ],
+   "balance_mean": 0.385,
+   "twin_gf": 0.45
+  },
+  {
+   "duty": 127,
+   "rpm": [
+    1183,
+    1198
+   ],
+   "rpm_mean": 1190,
+   "balance_g": [
+    0.2,
+    0.2
+   ],
+   "balance_mean": 0.2,
+   "twin_gf": 0.249
+  },
+  {
+   "duty": 102,
+   "rpm": [
+    687,
+    703
+   ],
+   "rpm_mean": 695,
+   "balance_g": [
+    0.06,
+    0.05
+   ],
+   "balance_mean": 0.055,
+   "twin_gf": 0.083
+  }
+ ],
+ "thrust_scale_vs_twin": 0.918,
+ "re_dependent_lift_test": {
+  "model": "cl = kL (Re/Re0)^m 2 pi alpha, Re0 = 14977 (0.75 R, 3070 rpm), kD fixed 7.92",
+  "current_m0": {
+   "chi2": 3.8,
+   "thrust_gf": [
+    1.7,
+    0.85,
+    0.45,
+    0.25,
+    0.08
+   ]
+  },
+  "fit": {
+   "kL": 0.911,
+   "m": 0.48,
+   "chi2": 0.25,
+   "thrust_gf": [
+    1.65,
+    0.77,
+    0.37,
+    0.19,
+    0.05
+   ]
+  },
+  "note": "not in the twin yet: needs bemt.py/JS polar change and a joint refit (partial-speed torque changes)"
+ },
+ "conclusion": "Full speed matches (0.99); 80-50 % the twin over-predicts thrust by 15-20 % (balance ~ n^2.23). The 'IMG_5769' kL fit paired balance readings with speeds from another session. A Reynolds-dependent lift efficiency (m = 0.48) fits all five points."
+}

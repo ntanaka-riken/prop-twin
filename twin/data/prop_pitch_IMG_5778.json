@@ -1,0 +1,181 @@
+{
+ "source": "IMG_5778.MOV (orbit, prop lying on table, 10-yen coin), RealityKit Object Capture full, 230 frames",
+ "method": "rotation axis from 3-fold self-symmetry of the yellow point cloud; cylinder cuts r = const; upper envelope; chord line angle = geometric pitch. Blade-to-blade spread (~±4 deg) is a residual axis tilt and cancels in the 3-blade mean.",
+ "R_scan_units": 0.18,
+ "R_mm_from_coin_and_hub": "~32",
+ "sections": [
+  {
+   "r_R": 0.4,
+   "pitch_deg_per_blade": [
+    19.3,
+    16.2,
+    null
+   ],
+   "mean3_deg": null,
+   "chord_scan_R": [
+    0.63,
+    0.62,
+    0.24
+   ],
+   "chord_outline_R": 0.62
+  },
+  {
+   "r_R": 0.45,
+   "pitch_deg_per_blade": [
+    17.7,
+    14.9,
+    null
+   ],
+   "mean3_deg": null,
+   "chord_scan_R": [
+    0.73,
+    0.66,
+    0.31
+   ],
+   "chord_outline_R": 0.72
+  },
+  {
+   "r_R": 0.5,
+   "pitch_deg_per_blade": [
+    17.1,
+    15.3,
+    null
+   ],
+   "mean3_deg": null,
+   "chord_scan_R": [
+    0.8,
+    0.72,
+    0.36
+   ],
+   "chord_outline_R": 0.79
+  },
+  {
+   "r_R": 0.55,
+   "pitch_deg_per_blade": [
+    16.8,
+    14.6,
+    22.3
+   ],
+   "mean3_deg": 17.9,
+   "chord_scan_R": [
+    0.86,
+    0.78,
+    0.8
+   ],
+   "chord_outline_R": 0.83
+  },
+  {
+   "r_R": 0.6,
+   "pitch_deg_per_blade": [
+    16.6,
+    13.6,
+    22.4
+   ],
+   "mean3_deg": 17.6,
+   "chord_scan_R": [
+    0.92,
+    0.84,
+    0.87
+   ],
+   "chord_outline_R": 0.88
+  },
+  {
+   "r_R": 0.65,
+   "pitch_deg_per_blade": [
+    17.5,
+    14.2,
+    22.5
+   ],
+   "mean3_deg": 18.0,
+   "chord_scan_R": [
+    0.94,
+    0.95,
+    0.9
+   ],
+   "chord_outline_R": 0.92
+  },
+  {
+   "r_R": 0.7,
+   "pitch_deg_per_blade": [
+    16.0,
+    15.7,
+    1.0
+   ],
+   "mean3_deg": null,
+   "chord_scan_R": [
+    0.93,
+    0.96,
+    0.93
+   ],
+   "chord_outline_R": 0.92,
+   "note": "blade(s) with < 10 deg sit on a double-layer (upper/lower surface) reconstruction artefact"
+  },
+  {
+   "r_R": 0.75,
+   "pitch_deg_per_blade": [
+    16.4,
+    9.1,
+    0.7
+   ],
+   "mean3_deg": null,
+   "chord_scan_R": [
+    0.94,
+    0.88,
+    0.93
+   ],
+   "chord_outline_R": 0.92,
+   "note": "blade(s) with < 10 deg sit on a double-layer (upper/lower surface) reconstruction artefact"
+  },
+  {
+   "r_R": 0.8,
+   "pitch_deg_per_blade": [
+    16.4,
+    7.7,
+    22.4
+   ],
+   "mean3_deg": null,
+   "chord_scan_R": [
+    0.89,
+    0.83,
+    0.9
+   ],
+   "chord_outline_R": 0.91,
+   "note": "blade(s) with < 10 deg sit on a double-layer (upper/lower surface) reconstruction artefact"
+  },
+  {
+   "r_R": 0.85,
+   "pitch_deg_per_blade": [
+    16.2,
+    null,
+    21.5
+   ],
+   "mean3_deg": null,
+   "chord_scan_R": [
+    0.83,
+    0.61,
+    0.82
+   ],
+   "chord_outline_R": 0.87
+  },
+  {
+   "r_R": 0.9,
+   "pitch_deg_per_blade": [
+    15.1,
+    null,
+    21.6
+   ],
+   "mean3_deg": null,
+   "chord_scan_R": [
+    0.72,
+    0.68,
+    0.73
+   ],
+   "chord_outline_R": 0.76
+  }
+ ],
+ "summary": {
+  "pitch_geometric_deg": "17.5-18.1 (3-blade mean, r/R 0.55-0.65); blade 0 alone 15-19 over r/R 0.4-0.9 -> twist small (<~3 deg)",
+  "camber": "visible but not measurable from this mesh (noise ±0.15 c)",
+  "chord": "scan chord matches the photo outline CHORD table within ~5 %"
+ }
+}

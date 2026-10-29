@@ -1,0 +1,69 @@
+{
+ "source": "IMG_5744.MOV",
+ "fps": 29.999,
+ "coins": 0,
+ "video_minus_host": 6.737,
+ "led_flash_t": [
+  11.85,
+  15.751,
+  20.751,
+  22.751,
+  25.784,
+  29.785
+ ],
+ "note": "LED flashes for dcm:speed 255 (8.826) and dcm:brake (18.760) not seen (prop blur over the LED); offset from the other six, +-0.015 s",
+ "events": [
+  [
+   8.826,
+   "dcm:speed 255"
+  ],
+  [
+   11.835,
+   "dcm:off"
+  ],
+  [
+   15.746,
+   "dcm:speed 255"
+  ],
+  [
+   18.76,
+   "dcm:brake"
+  ],
+  [
+   20.748,
+   "dcm:off"
+  ],
+  [
+   22.767,
+   "dcm:speed 255"
+  ],
+  [
+   25.784,
+   "dcm:speed 51"
+  ],
+  [
+   29.793,
+   "dcm:off"
+  ]
+ ],
+ "f_full_before": [
+  49.62,
+  49.08,
+  48.64
+ ],
+ "stops": {
+  "coast": {
+   "t_cmd": 11.835,
+   "t_stop": 12.584
+  },
+  "brake": {
+   "t_cmd": 18.76,
+   "t_stop": 19.484
+  },
+  "low20": {
+   "t_cmd": 25.784,
+   "t_stop": 26.718
+  }
+ },
+ "stop_uncertainty_s": 0.033
+}

@@ -1,0 +1,69 @@
+{
+ "source": "IMG_5781.MOV: boot-sequence preset sent from twin3d.html over Web Serial (5 s: dcm:speed 127 + dcm:ramp 100 5000, 11 s: dcm:off); balance TANITA KJ-212 tared to 0.0 g",
+ "video_minus_boot": -1.5,
+ "sync": "full-speed brush comb locked 8.8-9.4 s video (100 % held boot 10-11 s)",
+ "full_speed": {
+  "comb_Hz": [
+   51.04,
+   51.0,
+   50.96,
+   50.92,
+   50.88
+  ],
+  "rpm": 3058,
+  "twin_rpm": 3157
+ },
+ "balance_g": [
+  [
+   5.2,
+   0.1
+  ],
+  [
+   5.8,
+   0.2
+  ],
+  [
+   6.4,
+   0.4
+  ],
+  [
+   6.8,
+   0.5
+  ],
+  [
+   7.4,
+   0.7
+  ],
+  [
+   8.0,
+   0.8
+  ],
+  [
+   8.4,
+   1.0
+  ],
+  [
+   9.0,
+   1.4
+  ],
+  [
+   9.6,
+   1.8
+  ],
+  [
+   10.0,
+   1.4
+  ],
+  [
+   10.6,
+   0.0
+  ]
+ ],
+ "comparison": {
+  "twin_thrust_at_measured_full_rpm_gf": 1.69,
+  "balance_peak_g": 1.8,
+  "twin_thrust_at_twin_full_rpm_gf": 1.8,
+  "lag_fit": "best: thrust x0.80 + 0.5 s dead time (rms 0.16 g) but then peak 1.44 vs 1.8; scale 1.0 + 0.3 s + 0.4 s lag rms 0.21 g"
+ },
+ "conclusion": "Full-speed thrust is not over-predicted (1.69 gf at the measured 3058 rpm vs 1.8 g peak). During the 5 s ramp the kitchen-balance display lags ~0.5 s and reads 0.2-0.4 g below the twin; the twin also runs 3 % fast at 100 % (warm-up drift), which adds ~6 % thrust on the page. A steady 5-6 s hold per duty is needed to test thrust."
+}

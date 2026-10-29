@@ -1,0 +1,157 @@
+[
+[
+0.0039,
+"beep",
+null
+],
+[
+2.0041,
+"beep",
+null
+],
+[
+2.0066,
+"tx",
+"dcm:speed 255"
+],
+[
+2.0247,
+"rx",
+"ACK dcm:speed dir=1 duty=255"
+],
+[
+5.0132,
+"beep",
+null
+],
+[
+5.0145,
+"tx",
+"dcm:off"
+],
+[
+5.0172,
+"rx",
+"ACK dcm:off"
+],
+[
+8.0252,
+"beep",
+null
+],
+[
+8.0276,
+"tx",
+"dcm:speed 255"
+],
+[
+8.0427,
+"rx",
+"ACK dcm:speed dir=1 duty=255"
+],
+[
+11.0323,
+"beep",
+null
+],
+[
+11.0347,
+"tx",
+"dcm:brake"
+],
+[
+11.0509,
+"rx",
+"ACK dcm:brake"
+],
+[
+13.0238,
+"beep",
+null
+],
+[
+13.025,
+"tx",
+"dcm:off"
+],
+[
+13.0357,
+"rx",
+"ACK dcm:off"
+],
+[
+15.0302,
+"beep",
+null
+],
+[
+15.0327,
+"tx",
+"dcm:speed 255"
+],
+[
+15.0365,
+"rx",
+"ACK dcm:speed dir=1 duty=255"
+],
+[
+17.036,
+"beep",
+null
+],
+[
+17.0384,
+"tx",
+"dcm:speed 204"
+],
+[
+17.0531,
+"rx",
+"ACK dcm:speed dir=1 duty=204"
+],
+[
+19.0556,
+"beep",
+null
+],
+[
+19.0579,
+"tx",
+"dcm:speed 153"
+],
+[
+19.0696,
+"rx",
+"ACK dcm:speed dir=1 duty=153"
+],
+[
+21.0512,
+"beep",
+null
+],
+[
+21.0536,
+"tx",
+"dcm:speed 102"
+],
+[
+21.0705,
+"rx",
+"ACK dcm:speed dir=1 duty=102"
+],
+[
+23.0147,
+"beep",
+null
+],
+[
+23.016,
+"tx",
+"dcm:off"
+],
+[
+23.0228,
+"rx",
+"ACK dcm:off"
+]
+]

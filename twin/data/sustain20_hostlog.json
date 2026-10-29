@@ -1,0 +1,52 @@
+[
+[
+0.0039,
+"beep",
+null
+],
+[
+2.054,
+"beep",
+null
+],
+[
+2.0565,
+"tx",
+"dcm:speed 255"
+],
+[
+2.0721,
+"rx",
+"ACK dcm:speed dir=1 duty=255"
+],
+[
+5.0628,
+"beep",
+null
+],
+[
+5.0653,
+"tx",
+"dcm:speed 51"
+],
+[
+5.0803,
+"rx",
+"ACK dcm:speed dir=1 duty=51"
+],
+[
+13.0213,
+"beep",
+null
+],
+[
+13.0226,
+"tx",
+"dcm:off"
+],
+[
+13.0326,
+"rx",
+"ACK dcm:off"
+]
+]

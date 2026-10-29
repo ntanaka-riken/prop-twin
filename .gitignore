@@ -1,0 +1,12 @@
+# Arduino CLI build output
+build/
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+# macOS
+.DS_Store
+# Claude Code: keep the shared launch config, not personal settings
+.claude/*
+!.claude/launch.json

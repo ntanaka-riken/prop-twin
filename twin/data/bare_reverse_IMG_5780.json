@@ -1,0 +1,53 @@
+{
+ "source": "IMG_5780.MOV (propeller OFF, bare shaft, 30 fps, audio) + data/bare_reverse_hostlog.json",
+ "video_minus_host": 2.1,
+ "sync": "brush-noise envelope vs command times (corr 0.68)",
+ "audio_comb_Hz": {
+  "+255": [
+   71.7,
+   71.97,
+   72.31,
+   72.6
+  ],
+  "-255": [
+   70.49,
+   70.58,
+   70.77,
+   70.93
+  ],
+  "order": "+,- alternating, host 5,14,23,...,68 s"
+ },
+ "reverse_minus_forward": {
+  "Hz": -1.566,
+  "sd_Hz": 0.08,
+  "percent": -2.19,
+  "model": "f = a + b t + c dir, 8 points, drift +0.0126 Hz/s (warms up -> faster)"
+ },
+ "caveat": "resolved by the ADC check (adc_check)",
+ "result": {
+  "motor_asymmetry": "reverse -2.19 % with no load; modelled as an extra L293D drop dV0_rev = 0.061 V (extra friction gives the same propeller-on shift; a K change gives -1.2 % instead of -2.0 %)",
+  "aero": "with the propeller the reverse runs +0.57 % FASTER (IMG_5779), so the propeller load is lighter in reverse: aero torque -19 % (kD_r 1.67 vs kD 3.61). The BEMT cup ground-effect prediction (+12 % torque, -2 % speed) is contradicted."
+ },
+ "adc_check": {
+  "files": [
+   "data/adc/bare_coast_1.json",
+   "data/adc/bare_coast_2.json",
+   "data/adc/bare_emf.json"
+  ],
+  "ripple_drive_Hz": [
+   220.8,
+   220.7
+  ],
+  "rotation_Hz": 73.6,
+  "adc_emf_rpm": [
+   4951,
+   3946,
+   3913,
+   4269,
+   4786,
+   4798
+  ],
+  "adc_zero_raw": 16.7,
+  "conclusion": "propeller off, no flag: 73.6 Hz (ADC commutator ripple / 3), confirms the audio 71.7-72.6 Hz (not 35.85). IMG_5759 (61.4 Hz) had a tape flag: its drag took ~12 Hz, so the joint-fit viscous b (7.7e-7) is mostly flag drag."
+ }
+}

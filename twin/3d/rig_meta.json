@@ -1,0 +1,23 @@
+{
+ "units": "mm",
+ "mm_per_scan_unit": 268.86,
+ "board_fit_scan_units": [
+  0.3097,
+  0.2008
+ ],
+ "board_scale_long_short": [
+  266.4,
+  271.3
+ ],
+ "cup": {
+  "height_mm": 91.6,
+  "r_table_mm": 37.8,
+  "r_top_mm": 24.8
+ },
+ "vertices": 25233,
+ "triangles": 42032,
+ "cut": [
+  80.0,
+  45.0
+ ]
+}

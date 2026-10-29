@@ -1,0 +1,57 @@
+{
+ "source": "IMG_5769.MOV",
+ "balance": "TANITA KJ-212 micro mode 0.1 g",
+ "video_minus_host": 16.9,
+ "note": "offset from display step changes and the 100 % comb onset; the LED was too small in frame",
+ "baseline_g": 34.1,
+ "airflow": "upward (reading increases)",
+ "steps": [
+  {
+   "duty": 255,
+   "pct": 100,
+   "reading_g": 36.0,
+   "thrust_gf": 1.9,
+   "f_rot_Hz": 52.7,
+   "f_source": "audio comb + ADC ripple"
+  },
+  {
+   "duty": 204,
+   "pct": 80,
+   "reading_g": 34.94,
+   "thrust_gf": 0.84,
+   "f_rot_Hz": null
+  },
+  {
+   "duty": 153,
+   "pct": 60,
+   "reading_g": 34.58,
+   "thrust_gf": 0.48,
+   "f_rot_Hz": null
+  },
+  {
+   "duty": 127,
+   "pct": 50,
+   "reading_g": 34.3,
+   "thrust_gf": 0.2,
+   "f_rot_Hz": null
+  },
+  {
+   "duty": 102,
+   "pct": 40,
+   "reading_g": 34.2,
+   "thrust_gf": 0.1,
+   "f_rot_Hz": null
+  }
+ ],
+ "derived": {
+  "kT_N_s2": 1.7e-07,
+  "C_T_D64": 0.336,
+  "C_T_range": [
+   0.28,
+   0.41
+  ],
+  "C_Q_D64": 0.138,
+  "figure_of_merit": 0.16,
+  "downwash_m_s": 3.1
+ }
+}

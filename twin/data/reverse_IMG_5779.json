@@ -1,0 +1,47 @@
+{
+ "source": "IMG_5779.MOV (balance TANITA KJ-212 micro mode, rig on the pan, 30 fps) + data/reverse_hostlog.json",
+ "video_minus_host": 2.84,
+ "sync": "brush-noise envelope vs command times (corr 0.67); Tink inaudible under the motor",
+ "baseline_g": 30.6,
+ "note_baseline": "34.1 g in IMG_5769: the pan load changed between sessions",
+ "balance_delta_g": {
+  "+255": [
+   1.63,
+   1.6,
+   1.55
+  ],
+  "-255": [
+   -0.15,
+   -0.1,
+   -0.17
+  ],
+  "+204": 0.67,
+  "-204": -0.05,
+  "+153": 0.4,
+  "-153": 0.0
+ },
+ "audio_comb_Hz": {
+  "+255": [
+   51.56,
+   51.1,
+   50.88
+  ],
+  "-255": [
+   51.46,
+   51.36,
+   51.26
+  ],
+  "order": "+,-,+,-,+,- at host 10,21,32,43,54,65 s"
+ },
+ "reverse_minus_forward_Hz": {
+  "value": 0.29,
+  "sd": 0.13,
+  "percent": 0.57,
+  "model": "f = a + b t + c dir, 6 points, drift -0.010 Hz/s"
+ },
+ "partial_duty_audio": "80/60 %: comb locks on 1 kHz PWM lines, not usable",
+ "findings": [
+  "reverse balance ~ -0.14 g vs prediction -0.42..-1.36: the downward jet lands on the weighed pan and cup, ~93 % of its momentum returns to the balance, so the balance cannot measure reverse thrust",
+  "reverse full speed +0.57 +- 0.13 % faster than forward vs prediction -2..-7 %: either the cup ground-effect model is wrong or the motor itself is faster in reverse (brush timing); a propeller-off forward/reverse run separates the two"
+ ]
+}

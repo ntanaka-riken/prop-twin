@@ -1,0 +1,95 @@
+{
+ "about": "Twin prediction made BEFORE any reverse run (2026-10-29). Nominal = camber 0, cup effect on (bemt.py). balance: + = reading rises (forward blows air up). Speeds from motor_twin.simulate with the joint-fit plant.",
+ "nominal": {
+  "+255": {
+   "rpm": 3155,
+   "thrust_gf": 1.79,
+   "balance_g": 1.79,
+   "current_A": 0.1266,
+   "coast_stop_s": 0.742
+  },
+  "-255": {
+   "rpm": -3091,
+   "thrust_gf": -2.17,
+   "balance_g": -1.36,
+   "current_A": -0.1311,
+   "coast_stop_s": 0.72
+  },
+  "+204": {
+   "rpm": 2228,
+   "thrust_gf": 0.89,
+   "balance_g": 0.89,
+   "current_A": 0.0942,
+   "coast_stop_s": null
+  },
+  "-204": {
+   "rpm": -2178,
+   "thrust_gf": -1.07,
+   "balance_g": -0.67,
+   "current_A": -0.096,
+   "coast_stop_s": null
+  },
+  "+153": {
+   "rpm": 1625,
+   "thrust_gf": 0.47,
+   "balance_g": 0.47,
+   "current_A": 0.0761,
+   "coast_stop_s": null
+  },
+  "-153": {
+   "rpm": -1589,
+   "thrust_gf": -0.57,
+   "balance_g": -0.36,
+   "current_A": -0.0769,
+   "coast_stop_s": null
+  },
+  "+102": {
+   "rpm": 723,
+   "thrust_gf": 0.09,
+   "balance_g": 0.09,
+   "current_A": 0.0528,
+   "coast_stop_s": null
+  },
+  "-102": {
+   "rpm": -708,
+   "thrust_gf": -0.11,
+   "balance_g": -0.07,
+   "current_A": -0.053,
+   "coast_stop_s": null
+  }
+ },
+ "camber_band": {
+  "-0.02": {
+   "kL": 1.689,
+   "fwd_rpm": 3155,
+   "rev_rpm": 3007,
+   "rev_thrust_gf": 3.29,
+   "rev_balance_g": -2.06,
+   "plausible": false
+  },
+  "+0.00": {
+   "kL": 0.814,
+   "fwd_rpm": 3155,
+   "rev_rpm": 3091,
+   "rev_thrust_gf": 2.17,
+   "rev_balance_g": -1.36,
+   "plausible": true
+  },
+  "+0.02": {
+   "kL": 0.535,
+   "fwd_rpm": 3155,
+   "rev_rpm": 3049,
+   "rev_thrust_gf": 1.38,
+   "rev_balance_g": -0.87,
+   "plausible": true
+  },
+  "+0.05": {
+   "kL": 0.353,
+   "fwd_rpm": 3154,
+   "rev_rpm": 2932,
+   "rev_thrust_gf": 0.67,
+   "rev_balance_g": -0.42,
+   "plausible": true
+  }
+ }
+}

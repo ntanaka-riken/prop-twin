@@ -1,0 +1,96 @@
+[
+ [
+  "dcm:auto 0",
+  [
+   "ACK dcm:auto boot-soft-start=OFF"
+  ]
+ ],
+ [
+  "adc:zero",
+  [
+   "ACK adc:zero raw=16.7"
+  ]
+ ],
+ [
+  "adc:read",
+  [
+   "ADC raw=17 tout_mV=16 terminalA_mV=99"
+  ]
+ ],
+ [
+  "dcm:speed 255",
+  [
+   "ACK dcm:speed dir=1 duty=255"
+  ]
+ ],
+ [
+  "adc:cap 200 4000 500 dcm:off",
+  [
+   "ACK dcm:off",
+   "ADC cap n=4000 interval_us=200 pre=500 cmd_us=100000 total_us=799847 divider=0.1667",
+   "ADC end"
+  ]
+ ],
+ [
+  "dcm:speed 255",
+  [
+   "ACK dcm:speed dir=1 duty=255"
+  ]
+ ],
+ [
+  "adc:cap 200 4000 500 dcm:off",
+  [
+   "ACK dcm:off",
+   "ADC cap n=4000 interval_us=200 pre=500 cmd_us=100001 total_us=799842 divider=0.1667",
+   "ADC end"
+  ]
+ ],
+ [
+  "dcm:speed 255",
+  [
+   "ACK dcm:speed dir=1 duty=255"
+  ]
+ ],
+ [
+  "adc:emf",
+  [
+   "EMF terminalA_mV=3168 raw_mean=540.2 raw_min=526 raw_max=546 coast_us=1878 duty=255 rpm=4951 drive"
+  ]
+ ],
+ [
+  "adc:emf",
+  [
+   "EMF terminalA_mV=2545 raw_mean=434.0 raw_min=408 raw_max=462 coast_us=1899 duty=255 rpm=3946 drive"
+  ]
+ ],
+ [
+  "adc:emf",
+  [
+   "EMF terminalA_mV=2524 raw_mean=430.5 raw_min=405 raw_max=453 coast_us=1878 duty=255 rpm=3913 drive"
+  ]
+ ],
+ [
+  "adc:emf",
+  [
+   "EMF terminalA_mV=2745 raw_mean=468.1 raw_min=440 raw_max=495 coast_us=1878 duty=255 rpm=4269 drive"
+  ]
+ ],
+ [
+  "adc:emf",
+  [
+   "EMF terminalA_mV=3065 raw_mean=522.8 raw_min=521 raw_max=524 coast_us=1878 duty=255 rpm=4786 drive"
+  ]
+ ],
+ [
+  "adc:emf",
+  [
+   "EMF terminalA_mV=3073 raw_mean=524.0 raw_min=520 raw_max=525 coast_us=1899 duty=255 rpm=4798 drive"
+  ]
+ ],
+ [
+  "dcm:off",
+  [
+   "ACK dcm:off"
+  ]
+ ]
+]
