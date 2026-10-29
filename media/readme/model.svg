@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 600" width="1120" height="600" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+    <style>
+      .box{fill:#fff;stroke:#333;stroke-width:1.4}
+      .hd{font-size:15px;font-weight:700;fill:#111}
+      .tx{font-size:12.5px;fill:#222}
+      .eq{font-size:14px;fill:#111;font-family:'Times New Roman','STIX Two Text',serif;font-style:italic}
+      .sm{font-size:11.5px;fill:#555}
+      .ln{stroke:#333;stroke-width:1.5;fill:none}
+      .fb{stroke:#333;stroke-width:1.3;fill:none;stroke-dasharray:5 4}
+      .mt{font-size:12.5px;fill:#a34100}
+      .lab{font-size:12px;fill:#333}
+      .s{font-size:70%}
+    </style>
+  </defs>
+  <rect width="1120" height="600" fill="#fbfaf7"/>
+  <text x="20" y="30" font-size="17" font-weight="700" fill="#111">ツインの構成:②〜⑤ は PWM 1 周期(1 ms)ごと、① は 5 ms ごとに計算</text>
+
+  <!-- ① firmware -->
+  <rect class="box" x="20" y="60" width="240" height="200" rx="8" style="fill:#eef4fb"/>
+  <text class="hd" x="34" y="86">① ファーム v36</text>
+  <text class="tx" x="34" y="110">5 ms ループ、整数 duty(0–255)</text>
+  <text class="tx" x="34" y="130">dcm:speed / ramp / brake / off</text>
+  <text class="tx" x="34" y="150">rpm:set n* は FF + PI:</text>
+  <text class="eq" x="44" y="173">d = d<tspan class="s" baseline-shift="sub">FF</tspan>(n*) + K<tspan class="s" baseline-shift="sub">p</tspan>e + K<tspan class="s" baseline-shift="sub">i</tspan>∫e dt</text>
+  <text class="sm" x="34" y="194">K<tspan class="s" baseline-shift="sub">p</tspan> 0.04、K<tspan class="s" baseline-shift="sub">i</tspan> 0.25、duty 下限 40 %</text>
+  <text class="tx" x="34" y="218">adc:emf:EN を一瞬切って</text>
+  <text class="tx" x="34" y="236">逆起電力 Kω を読む回転計</text>
+
+  <!-- ② driver -->
+  <rect class="box" x="300" y="60" width="240" height="200" rx="8"/>
+  <text class="hd" x="314" y="86">② L293D(2 ブリッジ並列)</text>
+  <text class="tx" x="314" y="110">on(d·T の間):</text>
+  <text class="eq" x="330" y="130">v = V<tspan class="s" baseline-shift="sub">s</tspan> − V<tspan class="s" baseline-shift="sub">0</tspan> − r<tspan class="s" baseline-shift="sub">d</tspan> i</text>
+  <text class="tx" x="314" y="152">off:出力 Hi-Z。電流はクランプ</text>
+  <text class="tx" x="314" y="170">ダイオードで VCC2 へ高速減衰</text>
+  <text class="eq" x="330" y="190">v = −(V<tspan class="s" baseline-shift="sub">s</tspan> + 2V<tspan class="s" baseline-shift="sub">f</tspan>)</text><text class="sm" x="440" y="190">(i = 0 まで)</text>
+  <text class="tx" x="314" y="212">brake:|Kω| &gt; V<tspan class="s" baseline-shift="sub">bk</tspan> のときだけ</text>
+  <text class="tx" x="330" y="230">逆向き電流(弱いブレーキ)</text>
+  <text class="sm" x="314" y="251">V<tspan class="s" baseline-shift="sub">s</tspan> 4.9 V、V<tspan class="s" baseline-shift="sub">0</tspan> 1.32 V、r<tspan class="s" baseline-shift="sub">d</tspan> 0.6 Ω</text>
+
+  <!-- ③ electrical -->
+  <rect class="box" x="580" y="60" width="250" height="200" rx="8" style="fill:#fdf3ea"/>
+  <text class="hd" x="594" y="86">③ 電機子回路(電気系)</text>
+  <text class="eq" x="606" y="116">L di/dt = v − R i − K ω</text>
+  <text class="tx" x="594" y="142">1 周期内は ω 一定として</text>
+  <text class="tx" x="594" y="160">指数関数で厳密に解き、</text>
+  <text class="tx" x="594" y="178">周期平均 ⟨i⟩ と ⟨i²⟩ を出す</text>
+  <text class="sm" x="594" y="204">L/R ≈ 0.36 ms は 20 % の on 時間と同程度</text>
+  <text class="sm" x="594" y="222">→ 低 duty では電流が立ち上がらない</text>
+  <text class="sm" x="594" y="248">R 11.3 Ω、L 4.1 mH</text>
+
+  <!-- ④ mechanical -->
+  <rect class="box" x="870" y="60" width="230" height="200" rx="8" style="fill:#edf7f2"/>
+  <text class="hd" x="884" y="86">④ 回転系(機械系)</text>
+  <text class="eq" x="890" y="114">J dω/dt = K⟨i⟩</text>
+  <text class="eq" x="914" y="136">− T<tspan class="s" baseline-shift="sub">c</tspan> sgn ω − b ω</text>
+  <text class="eq" x="914" y="158">− Q<tspan class="s" baseline-shift="sub">aero</tspan>(ω)</text>
+  <text class="tx" x="884" y="184">静止中は |K⟨i⟩| ≤ T<tspan class="s" baseline-shift="sub">s</tspan> なら保持</text>
+  <text class="sm" x="884" y="208">J 9.5e-7 kg·m²(羽根 2.0 g + 回転子)</text>
+  <text class="sm" x="884" y="226">T<tspan class="s" baseline-shift="sub">c</tspan> 0.26、T<tspan class="s" baseline-shift="sub">s</tspan> 0.47 mN·m</text>
+  <text class="sm" x="884" y="244">b 3.4e-7 N·m·s</text>
+
+  <!-- ⑤ aero -->
+  <rect class="box" x="560" y="318" width="540" height="160" rx="8" style="fill:#f3f0fa"/>
+  <text class="hd" x="574" y="344">⑤ プロペラの空力:BEMT(翼素運動量理論、静止推力)</text>
+  <text class="tx" x="574" y="368">羽根を 40 の円環に分け、各円環で運動量と翼素の力を釣り合わせて誘導速度 v を解く</text>
+  <text class="eq" x="586" y="396">4π r F v² = ½ U² B c (c<tspan class="s" baseline-shift="sub">l</tspan> cos φ − c<tspan class="s" baseline-shift="sub">d</tspan> sin φ),   tan φ = v / (ω r)</text>
+  <text class="eq" x="586" y="422">c<tspan class="s" baseline-shift="sub">l</tspan> = k<tspan class="s" baseline-shift="sub">L</tspan> (Re/Re<tspan class="s" baseline-shift="sub">0</tspan>)<tspan class="s" baseline-shift="super">0.49</tspan> 2π α,   c<tspan class="s" baseline-shift="sub">d</tspan> = k<tspan class="s" baseline-shift="sub">D</tspan> (2.656/√Re + 2 sin²α),   α = θ − φ</text>
+  <text class="tx" x="574" y="448">→ 推力 T(ω)、空力トルク Q<tspan class="s" baseline-shift="sub">aero</tspan>(ω)、後流速度を回転数の表にして ④ から引く</text>
+  <text class="sm" x="574" y="468">θ 18°(3D 復元)、弦長 c(r)(写真の輪郭)、R 32 mm、B 3 枚、k<tspan class="s" baseline-shift="sub">L</tspan> 0.90、k<tspan class="s" baseline-shift="sub">D</tspan> 7.1(逆転 5.0)</text>
+
+  <!-- forward arrows -->
+  <path class="ln" d="M260,160 H298" marker-end="url(#ar)"/>
+  <text class="lab" x="263" y="152">d</text>
+  <path class="ln" d="M540,160 H578" marker-end="url(#ar)"/>
+  <text class="lab" x="547" y="152">v</text>
+  <path class="ln" d="M830,160 H868" marker-end="url(#ar)"/>
+  <text class="lab" x="836" y="152">⟨i⟩</text>
+  <path class="ln" d="M1010,260 V316" marker-end="url(#ar)"/>
+  <text class="lab" x="1016" y="292">ω</text>
+  <path class="ln" d="M950,318 V262" marker-end="url(#ar)"/>
+  <text class="lab" x="874" y="292">Q<tspan class="s" baseline-shift="sub">aero</tspan>(ω)</text>
+  <!-- back-emf -->
+  <path class="fb" d="M985,60 V44 H705 V58" marker-end="url(#ar)"/>
+  <text class="lab" x="738" y="40">逆起電力 K ω(同じ K がトルク定数 K⟨i⟩ にも入る)</text>
+  <!-- tachometer to firmware -->
+  <path class="fb" d="M1085,478 V510 H34 V262" marker-end="url(#ar)"/>
+  <text class="lab" x="560" y="504">回転計(adc:emf)の ω → rpm:set のフィードバック</text>
+
+  <!-- measurements -->
+  <text x="52" y="316" font-size="15" font-weight="700" fill="#a34100">パラメータを決めた計測</text>
+  <text class="mt" x="52" y="342">・音声 FFT の倍音コム → ω(t)(0.02 Hz 分解能)、通電の切れ目</text>
+  <text class="mt" x="52" y="363">・動画の羽根追跡 → 停止直前の ω と停止時刻 → T<tspan class="s" baseline-shift="sub">c</tspan>/J、L</text>
+  <text class="mt" x="52" y="384">・ESPr の ADC:逆起電力と整流子リップル → K を直接</text>
+  <text class="mt" x="52" y="405">・電子天秤:羽根 2.0 g → J、推力 + 同時の回転数 → k<tspan class="s" baseline-shift="sub">L</tspan>、Re 指数</text>
+  <text class="mt" x="52" y="426">・3D スキャン → ピッチ 18°、直径 64 mm、装置の寸法</text>
+  <text class="mt" x="52" y="447">・プロペラなし、正転 / 逆転 → 摩擦 b と空力 k<tspan class="s" baseline-shift="sub">D</tspan> を分離</text>
+  <text class="sm" x="52" y="470">全観測を fit_joint.py で同時に最小二乗(R、L、V<tspan class="s" baseline-shift="sub">0</tspan>、T<tspan class="s" baseline-shift="sub">c</tspan>、b、k<tspan class="s" baseline-shift="sub">D</tspan>、V<tspan class="s" baseline-shift="sub">bk</tspan>、回転子 J)</text>
+
+  <text class="sm" x="20" y="550">記号:i 巻線電流、ω 角速度、K 逆起電力定数 = トルク定数 6.06e-3 V·s/rad、T = 1 ms(PWM 周期)、⟨·⟩ は周期平均、n* は目標回転数。</text>
+  <text class="sm" x="20" y="570">数値は twin/params.json の現行値。ブラウザ版 twin/twin.html・twin3d.html も同じ式を JavaScript で実行し、Web Serial で実機の TEL を重ねて表示する。</text>
+</svg>

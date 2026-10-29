@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#f4f2ec;overflow:hidden}canvas{display:block}</style></head><body>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/MTLLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/OBJLoader.js"></script>
+<script>
+const q=new URLSearchParams(location.search), name=q.get('m')||'prop', elev=+(q.get('elev')||35);
+const r=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}); r.setSize(innerWidth,innerHeight); r.outputEncoding=THREE.sRGBEncoding; document.body.appendChild(r.domElement);
+const scene=new THREE.Scene(); scene.background=new THREE.Color(0xf4f2ec);
+scene.add(new THREE.HemisphereLight(0xffffff,0x888877,1.0)); const dl=new THREE.DirectionalLight(0xffffff,0.6); dl.position.set(1,2,1); scene.add(dl);
+const cam=new THREE.PerspectiveCamera(35,innerWidth/innerHeight,0.001,100);
+let obj, R=1, ctr=new THREE.Vector3(); window.ready=false; window.angle=0;
+const tex=new THREE.TextureLoader().load((q.get('t')||name+'_tex.jpg')); tex.encoding=THREE.sRGBEncoding; tex.flipY=true;
+new THREE.OBJLoader().load(name+'.obj',o=>{
+  o.traverse(c=>{if(c.isMesh){c.material=new THREE.MeshBasicMaterial({map:tex,side:THREE.DoubleSide});}});
+  const b=new THREE.Box3().setFromObject(o); b.getCenter(ctr); R=b.getSize(new THREE.Vector3()).length()/2; if(q.get('cx')){ctr.set(+q.get('cx'),+q.get('cy'),+q.get('cz'));} obj=o; scene.add(o); draw();});
+THREE.DefaultLoadingManager.onLoad=()=>{window.ready=true; draw();};
+function draw(){ const a=window.angle*Math.PI/180, e=elev*Math.PI/180, d=q.get('d')?+q.get('d'):R*(+(q.get('dist')||2.6));
+  cam.position.set(ctr.x+d*Math.cos(e)*Math.cos(a), ctr.y+d*Math.sin(e), ctr.z+d*Math.cos(e)*Math.sin(a)); cam.lookAt(ctr); r.render(scene,cam);}
+window.probe=(px,py)=>{const rc=new THREE.Raycaster(); rc.setFromCamera(new THREE.Vector2(px/innerWidth*2-1,-(py/innerHeight*2-1)),cam); const h=rc.intersectObject(obj,true)[0]; return h?h.point.toArray():null;};
+window.setAngle=a=>{window.angle=a; draw();};
+</script></body></html>
