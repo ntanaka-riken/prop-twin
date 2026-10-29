@@ -4,7 +4,7 @@ Switch Science **ESPr Developer**(ESP-WROOM-02 / ESP8266)で **L293D による D
 
 > **JAPAN SCIENTIST AI JAM SESSION 2026 での取り組み**
 >
-> このリポジトリは、理化学研究所 TRIP 事業本部・AGIS 主催の [JAPAN SCIENTIST AI JAM SESSION 2026](https://www.riken.jp/pr/events/lectures/20261027_1/index.html)(2026-10-27 チュートリアル、10-28 AP日本橋 / 10-29 理研神戸 R-CCS の本番セッション)の期間中に取り組んだ内容です。研究者が自分の課題を持ち寄り、AI エージェントを共同研究者として使ってみるイベントの課題として、Claude Code と一緒に装置のファームを整え、動画・ADC・電子天秤の計測からプロペラのデジタルツインを作りました。経緯は [`docs/HISTORY.md`](docs/HISTORY.md)、日ごとの要約は [`docs/daily/`](docs/daily/) にあります。
+> このリポジトリは、理化学研究所 TRIP 事業本部・AGIS 主催の [JAPAN SCIENTIST AI JAM SESSION 2026](https://www.riken.jp/pr/events/lectures/20261027_1/index.html)で取り組んだ内容です。2026-10-28(東京・AP日本橋)と 10-29(理研神戸 R-CCS)の本番セッションに両日とも参加しました。研究者が自分の課題を持ち寄り、AI エージェントを共同研究者として使ってみるイベントの課題として、Claude Code と一緒に装置のファームを整え、動画・ADC・電子天秤の計測からプロペラのデジタルツインを作りました。経緯は [`docs/HISTORY.md`](docs/HISTORY.md)、日ごとの要約は [1 日目 10-28](docs/daily/2026-10-28.md)・[2 日目 10-29](docs/daily/2026-10-29.md) にあります。
 
 - Wi-Fi / OTA / UDP / センサー類は**すべて削除**(v36 シリアル専用ビルド)。接続デバイスは L293D と、動画同期用の LED 1個(IO14)です。
 - 制御は **USB シリアル 115200 baud、1行 = 1コマンド**。Wi-Fi 環境に依存しないため、ルーター設定の如何にかかわらず同じ手順で運用できます。
@@ -12,7 +12,7 @@ Switch Science **ESPr Developer**(ESP-WROOM-02 / ESP8266)で **L293D による D
 
 ## 開発の記録
 
-2026-10-28〜29 に、動画・ADC・電子天秤で測りながらデジタルツインを作った経緯を [`docs/HISTORY.md`](docs/HISTORY.md) にまとめています。日ごとの要約は [`docs/daily/`](docs/daily/)(例:[2026-10-29](docs/daily/2026-10-29.md))。
+2026-10-28〜29 に、動画・ADC・電子天秤で測りながらデジタルツインを作った経緯を [`docs/HISTORY.md`](docs/HISTORY.md) にまとめています。日ごとの要約は [`docs/daily/`](docs/daily/)(例:[2026-10-28](docs/daily/2026-10-28.md)、[2026-10-29](docs/daily/2026-10-29.md))。
 
 | フォルダ | 内容 |
 |---|---|
