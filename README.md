@@ -6,6 +6,17 @@ Switch Science **ESPr Developer**(ESP-WROOM-02 / ESP8266)で **L293D による D
 - 制御は **USB シリアル 115200 baud、1行 = 1コマンド**。Wi-Fi 環境に依存しないため、ルーター設定の如何にかかわらず同じ手順で運用できます。
 - v1〜v35 のマルチデバイス版(マトリクス/OLED/BME280/MPU-6050/NeoPixel/サーボ/ステッパー/DHT)の履歴は `~/Documents/esp32/blink_ota_esp8266`(GitHub: ntanaka-riken/blink-ota-esp8266, private)に保存されています。
 
+## 開発の記録
+
+2026-10-28〜29 に、動画・ADC・電子天秤で測りながらデジタルツインを作った経緯を [`docs/HISTORY.md`](docs/HISTORY.md) にまとめています。
+
+| フォルダ | 内容 |
+|---|---|
+| [`docs/`](docs/) | 開発の記録(時系列、使った動画とコード、主な数値の移り変わり) |
+| [`media/`](media/) | 写真と図。動画・3D スキャン・作業用フォルダは GitHub のリリース `media-2026-10-29` に添付(一覧と取得方法は `media/README.md`) |
+| [`analysis/`](analysis/) | 作業中に書いた解析コード(1 日目と 2 日目) |
+| [`transcripts/`](transcripts/) | Claude Code との会話の記録(個人情報は伏せ字) |
+
 ## ファイル構成
 
 | ファイル | 内容 |

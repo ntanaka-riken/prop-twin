@@ -4,7 +4,7 @@
 
 ---
 
-`/Users/ntanaka/blink_ota_esp8266_v36` の続きです。Switch Science ESPr Developer(ESP8266)+ L293D(2ブリッジ並列)+ 130 級 DC モーター + 3 枚羽根プロペラ(紙コップ上)のデジタルツインを前セッションで作りました。まず `twin/README.md`、`twin/params.json`、`README.md`、`WIRING.md` を読んで現状を把握してから、下の「次の作業」を進めてください。返答は日本語で。
+`~/blink_ota_esp8266_v36` の続きです。Switch Science ESPr Developer(ESP8266)+ L293D(2ブリッジ並列)+ 130 級 DC モーター + 3 枚羽根プロペラ(紙コップ上)のデジタルツインを前セッションで作りました。まず `twin/README.md`、`twin/params.json`、`README.md`、`WIRING.md` を読んで現状を把握してから、下の「次の作業」を進めてください。返答は日本語で。
 
 ## 現状(前セッションの到達点)
 - **ファーム** `blink_ota_esp8266_v36.ino`(Arduino CLI、FQBN `esp8266:esp8266:generic:eesz=2M512,ip=lm2f`、ポート `/dev/cu.usbserial-DN05I0TZ`)。コマンド:`dcm:*`(speed/ramp/ramp-step/brake/off/auto)、同期 LED(IO14、ACK ごとに 100 ms)、`adc:read` / `adc:cap <us> <n> <pre> [cmd]` / `adc:emf [settle_us] [n]`(EN を切って逆起電力を読む回転計)/ `adc:zero`、閉ループ `rpm:set <rpm>`(750–3200、FF + PI、Kp 0.04、Ki 0.25、duty 下限 40 %)/ `rpm:off`、テレメトリ `tel:on`(50 ms ごとに `TEL t= duty= rpm= filt= ref=`)。ブートシーケンス(起動 5 s 後 50→100 %/5 s → 1 s 後停止)は既定 ON(`dcm:auto 0` で無効、再起動で戻る)。
