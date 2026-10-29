@@ -53,6 +53,7 @@
 | [`chat/day2_inline_2.webp`](chat/day2_inline_2.webp) | 0.2 MB | inline image, day-2 chat |
 | [`chat/prop_side_10yen.webp`](chat/prop_side_10yen.webp) | 0.2 MB | propeller side view sent for the pitch (day 2 afternoon) |
 | [`chat/prop_top_10yen.webp`](chat/prop_top_10yen.webp) | 0.4 MB | propeller top view sent for the pitch (day 2 afternoon) |
+| [`chat/l293d_pin_guide.jpg`](chat/l293d_pin_guide.jpg) | 0.3 MB | "L293D pin-number guide" that ChatGPT Codex (cloud) drew on the user's breadboard photo, day 1 09:43 (re-encoded, no metadata) |
 | [`3d/rig_scan_views.png`](3d/rig_scan_views.png) | 0.3 MB | rig scan, levelled and scaled |
 | [`3d/rig_scan_top.png`](3d/rig_scan_top.png) | 0.4 MB | rig scan from above |
 | [`3d/rig_scan_prop_region.png`](3d/rig_scan_prop_region.png) | 0.3 MB | propeller region of the rig scan (not reconstructable) |
