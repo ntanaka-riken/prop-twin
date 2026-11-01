@@ -1,0 +1,3 @@
+// absolute: first layer 15 um (y+ about 1 at the tip at full speed), 5 layers growing 1.25 (0.12 mm in all)
+relativeSizes false; thicknessModel firstAndExpansion; layers { blades { nSurfaceLayers 5; } hub { nSurfaceLayers 5; } motor { nSurfaceLayers 3; } }
+firstLayerThickness 1.5e-5; expansionRatio 1.25; minThickness 2e-6; featureAngle 180; maxThicknessToMedialRatio 0.3;

@@ -1,0 +1,41 @@
+FoamFile { version 2.0; format ascii; class dictionary; object snappyHexMeshDict; }
+// mesh test of the make_geometry.py parts: 8 mm base, blades level 5-6 (0.25-0.125 mm), rotor region level 3 (1 mm)
+castellatedMesh true; snap true; addLayers false;
+geometry
+{
+    blades.stl { type triSurfaceMesh; name blades; }
+    hub.stl    { type triSurfaceMesh; name hub; }
+    motor.stl  { type triSurfaceMesh; name motor; }
+    cup.stl    { type triSurfaceMesh; name cup; }
+    scale.stl  { type triSurfaceMesh; name scale; }
+    board.stl  { type triSurfaceMesh; name board; }
+    rotorZone  { type cylinder; point1 (0 0 0.1150); point2 (0 0 0.1420); radius 0.0360; }
+    wake       { type cylinder; point1 (0 0 0.100); point2 (0 0 0.260); radius 0.045; }
+}
+castellatedMeshControls
+{
+    maxLocalCells 20000000; maxGlobalCells 400000000; minRefinementCells 10; maxLoadUnbalance 0.10; nCellsBetweenLevels 3;
+    features ( { file "blades.eMesh"; level 6; } { file "hub.eMesh"; level 5; } { file "motor.eMesh"; level 4; } { file "cup.eMesh"; level 4; } );
+    refinementSurfaces
+    {
+        blades { level (5 6); patchInfo { type wall; } }
+        hub    { level (5 5); patchInfo { type wall; } }
+        motor  { level (4 4); patchInfo { type wall; } }
+        cup    { level (3 4); patchInfo { type wall; } }
+        scale  { level (2 2); patchInfo { type wall; } }
+        board  { level (2 2); patchInfo { type wall; } }
+    }
+    resolveFeatureAngle 30;
+    refinementRegions { rotorZone { mode inside; levels ((1e15 4)); } wake { mode inside; levels ((1e15 3)); } }
+    locationInMesh (0.2 0.2 0.4);
+    allowFreeStandingZoneFaces true;
+}
+snapControls { nSmoothPatch 3; tolerance 2.0; nSolveIter 50; nRelaxIter 5; nFeatureSnapIter 10; implicitFeatureSnap false; explicitFeatureSnap true; multiRegionFeatureSnap false; }
+addLayersControls { relativeSizes true; layers {} expansionRatio 1.2; finalLayerThickness 0.5; minThickness 0.1; nGrow 0; featureAngle 60; nRelaxIter 3; nSmoothSurfaceNormals 1; nSmoothNormals 3; nSmoothThickness 10; maxFaceThicknessRatio 0.5; maxThicknessToMedialRatio 0.3; minMedialAxisAngle 90; nBufferCellsNoExtrude 0; nLayerIter 50; }
+meshQualityControls   // the spack build has no etc/caseDicts/mesh/generation, so the usual values are written out
+{
+    maxNonOrtho 65; maxBoundarySkewness 20; maxInternalSkewness 4; maxConcave 80; minVol 1e-13; minTetQuality 1e-15;
+    minArea -1; minTwist 0.02; minDeterminant 0.001; minFaceWeight 0.05; minVolRatio 0.01; minTriangleTwist -1;
+    nSmoothScale 4; errorReduction 0.75; relaxed { maxNonOrtho 75; }
+}
+mergeTolerance 1e-6;

@@ -1,0 +1,23 @@
+#!/bin/bash
+# Stage-3 run on the decomposed mesh:  MODE=urans|les RPM=3067 DIR=1 REVS=30 AVG=15 NP=<ranks> ./Allrun   (DIR +1 forward, -1 reverse)
+#   urans: kOmegaSST, a fixed step of 1 degree of rotation (PIMPLE iterations within the step)
+#   les:   WALE, wall-resolved, Courant number <= 0.9 (about 1e-6 s at full speed: days of computing)
+# Restartable: written every 5 revolutions; a second call continues from the latest time.
+cd "${0%/*}" || exit
+NP=${NP:-144}; REVS=${REVS:-30}; AVG=${AVG:-15}
+read -r OMEGA TREV <<< "$(python3 -c "import math; w = ${DIR:-1} * ${RPM:?} * math.pi / 30; print(w, 60 / ${RPM})")"
+if [ ! -f started ]; then touch started
+    sed -i "s/OMEGA/$OMEGA/" constant/dynamicMeshDict
+    MODE=${MODE:-urans}
+    for f in constant/turbulenceProperties system/fvSchemes system/fvSolution; do cp $f.$MODE $f; done
+    if [ "$MODE" = urans ]; then
+        foamDictionary -entry adjustTimeStep -set no system/controlDict >/dev/null
+        foamDictionary -entry deltaT -set $(python3 -c "print($TREV / 360)") system/controlDict >/dev/null
+    fi
+    foamDictionary -entry endTime -set $(python3 -c "print($REVS * $TREV)") system/controlDict >/dev/null
+    foamDictionary -entry writeInterval -set $(python3 -c "print(5 * $TREV)") system/controlDict >/dev/null
+    foamDictionary -entry functions/average/timeStart -set $(python3 -c "print($AVG * $TREV)") system/controlDict >/dev/null
+    for d in processor*; do rm -rf $d/0; cp -r 0.orig $d/0; done    # uniform start, the mesh is already decomposed
+fi
+[ -f log.pimpleFoam ] && mv log.pimpleFoam log.pimpleFoam.$(date +%s)
+srun --mpi=pmix -n $NP pimpleFoam -parallel > log.pimpleFoam 2>&1

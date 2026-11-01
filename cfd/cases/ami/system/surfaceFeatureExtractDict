@@ -1,0 +1,5 @@
+FoamFile { version 2.0; format ascii; class dictionary; object surfaceFeatureExtractDict; }
+blades.stl { extractionMethod extractFromSurface; includedAngle 150; writeObj no; }
+hub.stl { extractionMethod extractFromSurface; includedAngle 150; writeObj no; }
+motor.stl { extractionMethod extractFromSurface; includedAngle 150; writeObj no; }
+cup.stl { extractionMethod extractFromSurface; includedAngle 150; writeObj no; }

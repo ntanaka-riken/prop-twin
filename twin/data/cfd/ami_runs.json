@@ -1,0 +1,311 @@
+{
+ "source": "cfd/cases/ami (pimpleFoam, rotating AMI mesh, time average from revolution 8)",
+ "runs": [
+  {
+   "name": "L0-abs_urans_fwd_3067",
+   "mesh": "0-abs",
+   "mode": "urans",
+   "rpm": 3067,
+   "dir": 1,
+   "revolutions": 15.0,
+   "avg_from_rev": 8,
+   "thrust_gf": 1.624,
+   "thrust_std_gf": 0.0106,
+   "torque_uNm": 155.94,
+   "balance_gf": 0.7464,
+   "balance_std_gf": 0.0133,
+   "balance_parts_gf": {
+    "blades": 1.4855,
+    "hub": 0.1386,
+    "motor": -0.1815,
+    "cup": -0.6505,
+    "scale": -0.0411,
+    "board": -0.0047
+   },
+   "per_revolution": [
+    {
+     "rev": 1,
+     "thrust_gf": 2.0267,
+     "balance_gf": 0.9078,
+     "torque_uNm": 187.5
+    },
+    {
+     "rev": 2,
+     "thrust_gf": 1.5222,
+     "balance_gf": 0.6205,
+     "torque_uNm": 140.55
+    },
+    {
+     "rev": 3,
+     "thrust_gf": 1.6091,
+     "balance_gf": 0.7104,
+     "torque_uNm": 149.82
+    },
+    {
+     "rev": 4,
+     "thrust_gf": 1.6247,
+     "balance_gf": 0.7452,
+     "torque_uNm": 152.69
+    },
+    {
+     "rev": 5,
+     "thrust_gf": 1.6249,
+     "balance_gf": 0.7288,
+     "torque_uNm": 154.53
+    },
+    {
+     "rev": 6,
+     "thrust_gf": 1.6184,
+     "balance_gf": 0.7194,
+     "torque_uNm": 154.87
+    },
+    {
+     "rev": 7,
+     "thrust_gf": 1.6104,
+     "balance_gf": 0.7142,
+     "torque_uNm": 154.85
+    },
+    {
+     "rev": 8,
+     "thrust_gf": 1.6123,
+     "balance_gf": 0.7173,
+     "torque_uNm": 155.09
+    },
+    {
+     "rev": 9,
+     "thrust_gf": 1.619,
+     "balance_gf": 0.7278,
+     "torque_uNm": 155.5
+    },
+    {
+     "rev": 10,
+     "thrust_gf": 1.622,
+     "balance_gf": 0.7369,
+     "torque_uNm": 155.77
+    },
+    {
+     "rev": 11,
+     "thrust_gf": 1.6249,
+     "balance_gf": 0.7436,
+     "torque_uNm": 155.95
+    },
+    {
+     "rev": 12,
+     "thrust_gf": 1.6259,
+     "balance_gf": 0.7484,
+     "torque_uNm": 156.05
+    },
+    {
+     "rev": 13,
+     "thrust_gf": 1.626,
+     "balance_gf": 0.7526,
+     "torque_uNm": 156.12
+    },
+    {
+     "rev": 14,
+     "thrust_gf": 1.6256,
+     "balance_gf": 0.7559,
+     "torque_uNm": 156.1
+    }
+   ]
+  },
+  {
+   "name": "L0-abs_urans_rev_3067",
+   "mesh": "0-abs",
+   "mode": "urans",
+   "rpm": 3067,
+   "dir": -1,
+   "revolutions": 30.0,
+   "avg_from_rev": 8,
+   "thrust_gf": 2.0613,
+   "thrust_std_gf": 0.0063,
+   "torque_uNm": 164.56,
+   "balance_gf": -0.225,
+   "balance_std_gf": 0.1431,
+   "balance_parts_gf": {
+    "blades": -1.85,
+    "hub": -0.2113,
+    "motor": 0.1583,
+    "cup": 0.7974,
+    "scale": 0.8229,
+    "board": 0.0576
+   },
+   "per_revolution": [
+    {
+     "rev": 1,
+     "thrust_gf": 2.4101,
+     "balance_gf": -1.1583,
+     "torque_uNm": 203.81
+    },
+    {
+     "rev": 2,
+     "thrust_gf": 2.1025,
+     "balance_gf": -0.8816,
+     "torque_uNm": 165.08
+    },
+    {
+     "rev": 3,
+     "thrust_gf": 2.0733,
+     "balance_gf": -0.7899,
+     "torque_uNm": 163.86
+    },
+    {
+     "rev": 4,
+     "thrust_gf": 2.0863,
+     "balance_gf": -0.7739,
+     "torque_uNm": 164.75
+    },
+    {
+     "rev": 5,
+     "thrust_gf": 2.0931,
+     "balance_gf": -0.7867,
+     "torque_uNm": 165.31
+    },
+    {
+     "rev": 6,
+     "thrust_gf": 2.0841,
+     "balance_gf": -0.7735,
+     "torque_uNm": 165.08
+    },
+    {
+     "rev": 7,
+     "thrust_gf": 2.0815,
+     "balance_gf": -0.7515,
+     "torque_uNm": 165.24
+    },
+    {
+     "rev": 8,
+     "thrust_gf": 2.0793,
+     "balance_gf": -0.7194,
+     "torque_uNm": 165.25
+    },
+    {
+     "rev": 9,
+     "thrust_gf": 2.0747,
+     "balance_gf": -0.6517,
+     "torque_uNm": 165.1
+    },
+    {
+     "rev": 10,
+     "thrust_gf": 2.0722,
+     "balance_gf": -0.5384,
+     "torque_uNm": 165.03
+    },
+    {
+     "rev": 11,
+     "thrust_gf": 2.0709,
+     "balance_gf": -0.428,
+     "torque_uNm": 164.96
+    },
+    {
+     "rev": 12,
+     "thrust_gf": 2.0669,
+     "balance_gf": -0.3529,
+     "torque_uNm": 164.85
+    },
+    {
+     "rev": 13,
+     "thrust_gf": 2.0665,
+     "balance_gf": -0.2976,
+     "torque_uNm": 164.82
+    },
+    {
+     "rev": 14,
+     "thrust_gf": 2.0651,
+     "balance_gf": -0.2439,
+     "torque_uNm": 164.73
+    },
+    {
+     "rev": 15,
+     "thrust_gf": 2.0617,
+     "balance_gf": -0.2007,
+     "torque_uNm": 164.64
+    },
+    {
+     "rev": 16,
+     "thrust_gf": 2.0617,
+     "balance_gf": -0.1701,
+     "torque_uNm": 164.64
+    },
+    {
+     "rev": 17,
+     "thrust_gf": 2.0605,
+     "balance_gf": -0.1477,
+     "torque_uNm": 164.56
+    },
+    {
+     "rev": 18,
+     "thrust_gf": 2.0585,
+     "balance_gf": -0.13,
+     "torque_uNm": 164.52
+    },
+    {
+     "rev": 19,
+     "thrust_gf": 2.0582,
+     "balance_gf": -0.12,
+     "torque_uNm": 164.49
+    },
+    {
+     "rev": 20,
+     "thrust_gf": 2.0578,
+     "balance_gf": -0.1239,
+     "torque_uNm": 164.43
+    },
+    {
+     "rev": 21,
+     "thrust_gf": 2.0565,
+     "balance_gf": -0.1321,
+     "torque_uNm": 164.42
+    },
+    {
+     "rev": 22,
+     "thrust_gf": 2.0569,
+     "balance_gf": -0.14,
+     "torque_uNm": 164.41
+    },
+    {
+     "rev": 23,
+     "thrust_gf": 2.0575,
+     "balance_gf": -0.1504,
+     "torque_uNm": 164.38
+    },
+    {
+     "rev": 24,
+     "thrust_gf": 2.0575,
+     "balance_gf": -0.1552,
+     "torque_uNm": 164.4
+    },
+    {
+     "rev": 25,
+     "thrust_gf": 2.0574,
+     "balance_gf": -0.1591,
+     "torque_uNm": 164.36
+    },
+    {
+     "rev": 26,
+     "thrust_gf": 2.0584,
+     "balance_gf": -0.1649,
+     "torque_uNm": 164.35
+    },
+    {
+     "rev": 27,
+     "thrust_gf": 2.0575,
+     "balance_gf": -0.1669,
+     "torque_uNm": 164.33
+    },
+    {
+     "rev": 28,
+     "thrust_gf": 2.0579,
+     "balance_gf": -0.1634,
+     "torque_uNm": 164.31
+    },
+    {
+     "rev": 29,
+     "thrust_gf": 2.0572,
+     "balance_gf": -0.1591,
+     "torque_uNm": 164.26
+    }
+   ]
+  }
+ ]
+}

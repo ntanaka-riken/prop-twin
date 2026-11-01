@@ -1,0 +1,7 @@
+FoamFile { version 2.0; format ascii; class dictionary; object topoSetDict; }
+// MRF zone: the swept volume of blades and hub. Its bottom is halfway between the bearing boss (119.2 mm) and the hub bottom (119.9 mm).
+actions
+(
+    { name rotor; type cellSet; action new; source cylinderToCell; point1 (0 0 0.11955); point2 (0 0 0.1365); radius 0.0345; }
+    { name rotor; type cellZoneSet; action new; source setToCellZone; set rotor; }
+);

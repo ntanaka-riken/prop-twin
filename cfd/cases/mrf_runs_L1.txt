@@ -1,0 +1,3 @@
+L1_lm_fwd_3067 3067 1 kOmegaSSTLM 1-abs
+L1_lm_rev_3067 3067 -1 kOmegaSSTLM 1-abs
+L1_lm_fwd_0695 695 1 kOmegaSSTLM 1-abs

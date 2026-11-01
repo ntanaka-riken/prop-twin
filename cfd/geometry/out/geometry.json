@@ -1,0 +1,74 @@
+{
+ "params": {
+  "R": 0.032,
+  "root": 0.31,
+  "pitch": 18.0,
+  "t": 0.0009,
+  "camber": 0.0,
+  "sweep": 0.12,
+  "h": 0.01,
+  "hub_r": 0.01104,
+  "hub_below": 0.0075,
+  "hub_cyl": 0.0015,
+  "hub_cap": 0.005,
+  "blades": 3,
+  "cup_z0": 0.0254,
+  "cup_z1": 0.1174,
+  "cup_r0": 0.0378,
+  "cup_r1": 0.0248,
+  "cup_recess": 0.0085,
+  "cup_wall": 0.001,
+  "motor_r": 0.0102,
+  "boss_r": 0.005,
+  "motor_top_below": 0.009,
+  "boss_h": 0.0008,
+  "scale_lx": 0.24,
+  "scale_ly": 0.15,
+  "scale_cx": -0.035,
+  "scale_cy": -0.01,
+  "scale_rot": -25.0,
+  "board_lx": 0.08,
+  "board_ly": 0.05,
+  "board_h": 0.01,
+  "board_cx": 0.055,
+  "board_cy": -0.075
+ },
+ "parts": {
+  "blades": {
+   "triangles": 34560,
+   "volume_mm3": 1389.8,
+   "open_edges": 0
+  },
+  "hub": {
+   "triangles": 4608,
+   "volume_mm3": 4717.6,
+   "open_edges": 0
+  },
+  "motor": {
+   "triangles": 768,
+   "volume_mm3": 4145.5,
+   "open_edges": 0
+  },
+  "cup": {
+   "triangles": 768,
+   "volume_mm3": 271131.0,
+   "open_edges": 0
+  },
+  "scale": {
+   "triangles": 16,
+   "volume_mm3": 914400.0,
+   "open_edges": 0
+  },
+  "board": {
+   "triangles": 16,
+   "volume_mm3": 40000.0,
+   "open_edges": 0
+  }
+ },
+ "rotor_volume_mm3": 6107.4,
+ "rotor_mass_g_if_solid": {
+  "PS 1.05": 6.41,
+  "PP 0.91": 5.56
+ },
+ "note": "the real hub is a shell, so the solid-hub mass overestimates; blades alone: 1.46 g at 1.05 g/cm3"
+}
