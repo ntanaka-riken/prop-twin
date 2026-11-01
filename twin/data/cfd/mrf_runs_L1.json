@@ -1,0 +1,74 @@
+{
+ "source": "cfd/cases/mrf (simpleFoam + MRF, last 1000 iterations)",
+ "runs": [
+  {
+   "name": "L1_lm_fwd_3067",
+   "rpm": 3067,
+   "dir": 1,
+   "model": "kOmegaSSTLM",
+   "mesh": "1-abs",
+   "iterations": 4000,
+   "thrust_gf": 1.8726,
+   "thrust_drift_gf": -0.2134,
+   "torque_uNm": 156.79,
+   "torque_drift_uNm": -10.66,
+   "balance_gf": -0.1562,
+   "balance_drift_gf": -0.1152,
+   "balance_parts_gf": {
+    "blades": 1.6056,
+    "hub": 0.2669,
+    "motor": -0.233,
+    "cup": -1.1967,
+    "scale": -0.5446,
+    "board": -0.0545
+   },
+   "measured_forward_balance_gf": 1.675
+  },
+  {
+   "name": "L1_lm_rev_3067",
+   "rpm": 3067,
+   "dir": -1,
+   "model": "kOmegaSSTLM",
+   "mesh": "1-abs",
+   "iterations": 4000,
+   "thrust_gf": 1.8899,
+   "thrust_drift_gf": 0.0044,
+   "torque_uNm": 176.04,
+   "torque_drift_uNm": 0.24,
+   "balance_gf": -1.671,
+   "balance_drift_gf": -0.0033,
+   "balance_parts_gf": {
+    "blades": -1.7722,
+    "hub": -0.1176,
+    "motor": 0.0789,
+    "cup": 0.3364,
+    "scale": -0.2073,
+    "board": 0.0109
+   },
+   "measured_forward_balance_gf": null
+  },
+  {
+   "name": "L1_lm_fwd_0695",
+   "rpm": 695,
+   "dir": 1,
+   "model": "kOmegaSSTLM",
+   "mesh": "1-abs",
+   "iterations": 4000,
+   "thrust_gf": 0.2603,
+   "thrust_drift_gf": 0.0014,
+   "torque_uNm": 23.03,
+   "torque_drift_uNm": 0.06,
+   "balance_gf": 0.1387,
+   "balance_drift_gf": -0.0014,
+   "balance_parts_gf": {
+    "blades": 0.2446,
+    "hub": 0.0157,
+    "motor": -0.0136,
+    "cup": -0.0736,
+    "scale": -0.0305,
+    "board": -0.0038
+   },
+   "measured_forward_balance_gf": 0.055
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+#!/bin/bash
+# Mesh the make_geometry.py parts (copied into constant/triSurface) and report size and quality.
+cd "${0%/*}" || exit
+NP=${NP:-64}
+foamDictionary -entry numberOfSubdomains -set $NP system/decomposeParDict >/dev/null
+blockMesh > log.blockMesh 2>&1 || exit 1
+surfaceFeatureExtract > log.surfaceFeatureExtract 2>&1 || exit 1
+for s in constant/triSurface/*.stl; do surfaceCheck $s 2>&1 | grep -E "closed|Surface is|Triangles|illegal|bounding" | sed "s|^|$(basename $s): |" ; done > log.surfaceCheck
+decomposePar > log.decomposePar 2>&1 || exit 1
+srun --mpi=pmix -n $NP snappyHexMesh -parallel -overwrite > log.snappyHexMesh 2>&1 || exit 1
+srun --mpi=pmix -n $NP checkMesh -parallel > log.checkMesh 2>&1

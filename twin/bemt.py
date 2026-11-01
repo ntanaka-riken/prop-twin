@@ -60,16 +60,75 @@ C = 2 * np.interp(X, *zip(*CHORD)) * R
 THRUST = [(3067, 1.675), (2184, 0.735), (1592, 0.385), (1190, 0.200), (695, 0.055)]   # rpm, gf
 RE0 = 14977.0                           # Re at 0.75 R and 3070 rpm, where kL is quoted
 KL_M = 0.0                              # Reynolds exponent of the lift efficiency (set by fit_kL_m / --m)
+T_BLADE = 0.9e-3                        # blade thickness, for t/c of the CFD polar
+CFD_POLAR = None                        # SectionPolar from --polar: replaces the thin-plate formula, kL and kD become multipliers
 
 
-def polar(alpha, re, kL, kD, camber=0.0):
+class SectionPolar:
+    """cl, cd of the stage-1 section LES (cfd/section, twin/data/cfd/section_polars.json), interpolated linearly in
+    alpha, t/c and f/c and in log Re (clamped to the table). The table has f/c >= 0; f < 0 is the mirror image:
+    cl(-f, a) = -cl(f, -a), cd(-f, a) = cd(f, -a)."""
+
+    def __init__(self, path):
+        rows = [r for r in json.load(open(path))["cases"] if "cl" in r]
+        n = {}
+        for r in rows:
+            n.setdefault((r["re"], r["t"], r["f"]), set()).add(r["alpha"])
+        combos = {(t, f) for _, t, f in n}
+        nmax = {f: max(len(v) for k, v in n.items() if k[2] == f) for _, f in combos}
+        part = {k[0] for k, v in n.items() if len(v) < nmax[k[2]]}
+        part |= {re for re in {k[0] for k in n} if {(t, f) for r2, t, f in n if r2 == re} != combos}
+        rows = [r for r in rows if r["re"] not in part]     # a Reynolds number still being computed is left out whole
+        self.missing_re = sorted(part)
+        self.re = sorted({r["re"] for r in rows})
+        self.t = sorted({r["t"] for r in rows})
+        self.f = sorted({r["f"] for r in rows})
+        self.tab = {}
+        for r in rows:
+            self.tab.setdefault((r["re"], r["t"], r["f"]), []).append((r["alpha"], r["cl"], r["cd"]))
+        for k, v in self.tab.items():
+            v.sort()
+            if k[2] == 0.0:                     # symmetric section: only alpha >= 0 was run
+                v[:0] = [(-a, -cl, cd) for a, cl, cd in v[::-1] if a > 0]
+            self.tab[k] = np.array(v)
+
+    @staticmethod
+    def _bracket(grid, x, log=False):
+        if x <= grid[0] or len(grid) == 1:
+            return [(grid[0], 1.0)]
+        if x >= grid[-1]:
+            return [(grid[-1], 1.0)]
+        j = int(np.searchsorted(grid, x))
+        a, b = grid[j - 1], grid[j]
+        u = (math.log(x / a) / math.log(b / a)) if log else (x - a) / (b - a)
+        return [(a, 1 - u), (b, u)]
+
+    def __call__(self, alpha_deg, re, tc, f):
+        s = -1.0 if f < 0 else 1.0
+        a = s * alpha_deg
+        cl = cd = 0.0
+        for rv, wr in self._bracket(self.re, re, log=True):
+            for tv, wt in self._bracket(self.t, tc):
+                for fv, wf in self._bracket(self.f, abs(f)):
+                    T = self.tab[(rv, tv, fv)]
+                    w = wr * wt * wf
+                    cl += w * np.interp(a, T[:, 0], T[:, 1])
+                    cd += w * np.interp(a, T[:, 0], T[:, 2])
+        return s * cl, cd
+
+
+def polar(alpha, re, kL, kD, camber=0.0, tc=0.03):
     re = max(re, 1.0)
+    if CFD_POLAR is not None:
+        cl, cd = CFD_POLAR(math.degrees(alpha), re, tc, camber)
+        return kL * cl, kD * cd
     return (kL * (re / RE0) ** KL_M * 2 * math.pi * (alpha + 2 * camber),
             kD * (2.656 / math.sqrt(re) + 2 * math.sin(alpha) ** 2))
 
 
 def _pass(w, kL, kD, cam, kG):
     T = Qi = Qp = mdot = mdot_in = Pind = T_in = 0.0
+    dist = []                               # per annulus: r, thrust, torque (SI), for the actuator disk of cfd/c3
     for x, c in zip(X, C):
         r = x * R
         Ut = w * r
@@ -79,13 +138,13 @@ def _pass(w, kL, kD, cam, kG):
             F = (2 / math.pi) * math.acos(math.exp(-B / 2 * (1 - x) / (x * s))) * \
                 (2 / math.pi) * math.acos(math.exp(-B / 2 * (x - HUB) / (x * s)))
             U2 = Ut * Ut / math.cos(phi) ** 2
-            cl, cd = polar(PITCH - phi, math.sqrt(U2) * c / NU, kL, kD, cam)
+            cl, cd = polar(PITCH - phi, math.sqrt(U2) * c / NU, kL, kD, cam, T_BLADE / c)
             return 4 * math.pi * r * F * (Ut * math.tan(phi) / kG) ** 2 - 0.5 * U2 * B * c * (cl * math.cos(phi) - cd * s), F
 
         phi = brentq(lambda p: f(p)[0], 1e-5, PITCH + 2 * max(cam, 0.0))
         F = f(phi)[1]
         U2 = Ut * Ut / math.cos(phi) ** 2
-        cl, cd = polar(PITCH - phi, math.sqrt(U2) * c / NU, kL, kD, cam)
+        cl, cd = polar(PITCH - phi, math.sqrt(U2) * c / NU, kL, kD, cam, T_BLADE / c)
         q = 0.5 * RHO * U2 * B * c * R * DX
         dT = q * (cl * math.cos(phi) - cd * math.sin(phi))
         v = Ut * math.tan(phi)
@@ -98,7 +157,8 @@ def _pass(w, kL, kD, cam, kG):
         if r < R_CUP:
             mdot_in += dm
             T_in += dT
-    return dict(T=T, Qi=Qi, Qp=Qp / kD, vw=T / mdot if mdot > 0 else 0.0, Pind=Pind,
+        dist.append((r, dT, q * (cl * math.sin(phi) + cd * math.cos(phi)) * r))
+    return dict(dist=dist, T=T, Qi=Qi, Qp=Qp / kD, vw=T / mdot if mdot > 0 else 0.0, Pind=Pind,
                 phi_cup=mdot_in / mdot if mdot > 0 else 0.0, T_in=T_in)
 
 
@@ -170,8 +230,21 @@ def main():
     ap.add_argument("--write", action="store_true", help="write the aero table into params.json")
     ap.add_argument("--reverse", action="store_true", help="also predict the reverse direction (sensitivity to camber / cup)")
     ap.add_argument("--m", type=float, default=None, help="hold the Reynolds exponent of the lift (default: fit it with kL)")
+    ap.add_argument("--polar", help="section polars from the stage-1 LES (twin/data/cfd/section_polars.json): print the "
+                                    "thrust with kL = kD = 1, then fit kL as a multiplier on it")
+    ap.add_argument("--camber", type=float, default=CAMBER, help="f/c, + helps forward (with --polar)")
     args = ap.parse_args()
-    global KL_M
+    global KL_M, CFD_POLAR
+    if args.polar:
+        CFD_POLAR = SectionPolar(args.polar)
+        print("CFD section polars (no fitted factor), f/c %+.3f:" % args.camber)
+        print("  rpm   thrust gf (meas)   Q uN.m")
+        for rpm, gf in THRUST:
+            sv = solve(rpm * math.pi / 30, 1.0, 1.0, args.camber)
+            print("  %4d   %5.3f  (%.3f)   %6.1f" % (rpm, sv["T"] / 9.80665e-3, gf, (sv["Qi"] + sv["Qp"]) * 1e6))
+        kL, chi2 = fit_kL(1.0, args.camber)
+        print("multiplier on the CFD lift that fits the balance: kL = %.3f (chi2 %.2f)" % (kL, chi2))
+        return
     if args.m is None:
         kL, m, chi2 = fit_kL_m(args.kD)
     else:

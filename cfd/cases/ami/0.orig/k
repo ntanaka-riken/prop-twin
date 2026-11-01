@@ -1,0 +1,11 @@
+FoamFile { version 2.0; format ascii; class volScalarField; object k; }
+// ambient room air: k for 1 % turbulence at 1 m/s, eddy viscosity ratio 1 (as in the MRF case)
+dimensions [0 2 -2 0 0 0 0]; internalField uniform 1.5e-4;
+boundaryField
+{
+    "(blades|hub)" { type fixedValue; value uniform 1e-12; }
+    "(motor|cup|scale|board|table)" { type fixedValue; value uniform 1e-12; }
+    room { type inletOutlet; inletValue uniform 1.5e-4; value uniform 1.5e-4; }
+    "AMI.*" { type cyclicAMI; value $internalField; }
+    "procBoundary.*" { type processor; value $internalField; }   // copied straight into processor*/0
+}

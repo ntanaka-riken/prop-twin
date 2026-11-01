@@ -1,0 +1,12 @@
+#!/bin/bash
+# Stage-3 mesh, left decomposed for the run:  LEVEL=0|1|2 LAYERS=abs|rel NP=<ranks> ./Allmesh
+cd "${0%/*}" || exit
+NP=${NP:-144}; LEVEL=${LEVEL:-0}
+cp system/levels.$LEVEL system/levels; cp system/layers.${LAYERS:-abs} system/layers
+foamDictionary -entry numberOfSubdomains -set $NP system/decomposeParDict >/dev/null
+blockMesh > log.blockMesh 2>&1 || exit 1
+surfaceFeatureExtract > log.surfaceFeatureExtract 2>&1 || exit 1
+decomposePar -force > log.decomposePar.mesh 2>&1 || exit 1
+srun --mpi=pmix -n $NP snappyHexMesh -parallel -overwrite > log.snappyHexMesh 2>&1 || exit 1
+srun --mpi=pmix -n $NP createPatch -parallel -overwrite > log.createPatch 2>&1 || exit 1
+srun --mpi=pmix -n $NP checkMesh -parallel > log.checkMesh 2>&1

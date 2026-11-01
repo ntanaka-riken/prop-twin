@@ -1,0 +1,8 @@
+FoamFile { version 2.0; format ascii; class volScalarField; object p; }
+dimensions [0 2 -2 0 0 0 0]; internalField uniform 0;
+boundaryField
+{
+    "(blades|hub)" { type zeroGradient; }
+    "(motor|cup|scale|board|table)" { type zeroGradient; }
+    room { type totalPressure; p0 uniform 0; value uniform 0; }
+}

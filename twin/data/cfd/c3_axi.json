@@ -1,0 +1,245 @@
+{
+ "source": "cfd/c3 (simpleFoam, axisymmetric 5 deg wedge, actuator disk from c3_disk.json)",
+ "runs": [
+  {
+   "name": "fwd_nu1.5e-3",
+   "dir": 1,
+   "turb": "nu",
+   "nu_eff": 0.0015,
+   "refine": 1.0,
+   "wall_s": 487.0,
+   "iterations": 6000,
+   "balance_gf": 0.6301,
+   "parts_gf": {
+    "hub": -0.0469,
+    "motor": -0.092,
+    "cup": -0.701,
+    "scale": -0.0155,
+    "disk": 1.4855
+   },
+   "sd_last_gf": {
+    "hub": 0.0,
+    "motor": 0.0,
+    "cup": 0.0,
+    "scale": 0.0
+   },
+   "urans_balance_gf": 0.7464,
+   "urans_parts_gf": {
+    "hub": 0.1386,
+    "motor": -0.1815,
+    "cup": -0.6505,
+    "scale": -0.0411
+   }
+  },
+  {
+   "name": "fwd_nu3e-3",
+   "dir": 1,
+   "turb": "nu",
+   "nu_eff": 0.003,
+   "refine": 1.0,
+   "wall_s": 479.0,
+   "iterations": 6000,
+   "balance_gf": 0.435,
+   "parts_gf": {
+    "hub": 0.0076,
+    "motor": -0.1133,
+    "cup": -0.9052,
+    "scale": -0.0396,
+    "disk": 1.4855
+   },
+   "sd_last_gf": {
+    "hub": 0.0003,
+    "motor": 0.0,
+    "cup": 0.0001,
+    "scale": 0.002
+   },
+   "urans_balance_gf": 0.7464,
+   "urans_parts_gf": {
+    "hub": 0.1386,
+    "motor": -0.1815,
+    "cup": -0.6505,
+    "scale": -0.0411
+   }
+  },
+  {
+   "name": "fwd_nu7e-4",
+   "dir": 1,
+   "turb": "nu",
+   "nu_eff": 0.0007,
+   "refine": 1.0,
+   "wall_s": 487.0,
+   "iterations": 6000,
+   "balance_gf": 0.7718,
+   "parts_gf": {
+    "hub": -0.0317,
+    "motor": -0.085,
+    "cup": -0.5892,
+    "scale": -0.0078,
+    "disk": 1.4855
+   },
+   "sd_last_gf": {
+    "hub": 0.0,
+    "motor": 0.0,
+    "cup": 0.0,
+    "scale": 0.0
+   },
+   "urans_balance_gf": 0.7464,
+   "urans_parts_gf": {
+    "hub": 0.1386,
+    "motor": -0.1815,
+    "cup": -0.6505,
+    "scale": -0.0411
+   }
+  },
+  {
+   "name": "fwd_sst",
+   "dir": 1,
+   "turb": "sst",
+   "nu_eff": null,
+   "refine": 1.0,
+   "wall_s": 667.0,
+   "iterations": 6000,
+   "balance_gf": 0.8569,
+   "parts_gf": {
+    "hub": -0.0305,
+    "motor": -0.1083,
+    "cup": -0.4858,
+    "scale": -0.004,
+    "disk": 1.4855
+   },
+   "sd_last_gf": {
+    "hub": 0.0405,
+    "motor": 0.0047,
+    "cup": 0.0027,
+    "scale": 0.0
+   },
+   "urans_balance_gf": 0.7464,
+   "urans_parts_gf": {
+    "hub": 0.1386,
+    "motor": -0.1815,
+    "cup": -0.6505,
+    "scale": -0.0411
+   }
+  },
+  {
+   "name": "rev_nu1.5e-3",
+   "dir": -1,
+   "turb": "nu",
+   "nu_eff": 0.0015,
+   "refine": 1.0,
+   "wall_s": 482.0,
+   "iterations": 6000,
+   "balance_gf": 0.0306,
+   "parts_gf": {
+    "hub": -0.2257,
+    "motor": 0.149,
+    "cup": 1.3657,
+    "scale": 0.5916,
+    "disk": -1.85
+   },
+   "sd_last_gf": {
+    "hub": 0.0,
+    "motor": 0.0,
+    "cup": 0.0,
+    "scale": 0.0004
+   },
+   "urans_balance_gf": -0.16,
+   "urans_parts_gf": {
+    "hub": -0.2113,
+    "motor": 0.1583,
+    "cup": 0.7974,
+    "scale": 0.8229
+   }
+  },
+  {
+   "name": "rev_nu3e-3",
+   "dir": -1,
+   "turb": "nu",
+   "nu_eff": 0.003,
+   "refine": 1.0,
+   "wall_s": 492.0,
+   "iterations": 6000,
+   "balance_gf": -0.0431,
+   "parts_gf": {
+    "hub": -0.226,
+    "motor": 0.163,
+    "cup": 1.503,
+    "scale": 0.3669,
+    "disk": -1.85
+   },
+   "sd_last_gf": {
+    "hub": 0.0,
+    "motor": 0.0,
+    "cup": 0.0003,
+    "scale": 0.0022
+   },
+   "urans_balance_gf": -0.16,
+   "urans_parts_gf": {
+    "hub": -0.2113,
+    "motor": 0.1583,
+    "cup": 0.7974,
+    "scale": 0.8229
+   }
+  },
+  {
+   "name": "rev_nu7e-4",
+   "dir": -1,
+   "turb": "nu",
+   "nu_eff": 0.0007,
+   "refine": 1.0,
+   "wall_s": 477.0,
+   "iterations": 6000,
+   "balance_gf": 0.032,
+   "parts_gf": {
+    "hub": -0.1882,
+    "motor": 0.1186,
+    "cup": 1.2057,
+    "scale": 0.7459,
+    "disk": -1.85
+   },
+   "sd_last_gf": {
+    "hub": 0.0,
+    "motor": 0.0,
+    "cup": 0.0,
+    "scale": 0.0001
+   },
+   "urans_balance_gf": -0.16,
+   "urans_parts_gf": {
+    "hub": -0.2113,
+    "motor": 0.1583,
+    "cup": 0.7974,
+    "scale": 0.8229
+   }
+  },
+  {
+   "name": "rev_sst",
+   "dir": -1,
+   "turb": "sst",
+   "nu_eff": null,
+   "refine": 1.0,
+   "wall_s": 678.0,
+   "iterations": 6000,
+   "balance_gf": 0.1358,
+   "parts_gf": {
+    "hub": -0.0763,
+    "motor": 0.0609,
+    "cup": 0.7509,
+    "scale": 1.2503,
+    "disk": -1.85
+   },
+   "sd_last_gf": {
+    "hub": 0.0176,
+    "motor": 0.0153,
+    "cup": 0.043,
+    "scale": 0.0486
+   },
+   "urans_balance_gf": -0.16,
+   "urans_parts_gf": {
+    "hub": -0.2113,
+    "motor": 0.1583,
+    "cup": 0.7974,
+    "scale": 0.8229
+   }
+  }
+ ]
+}

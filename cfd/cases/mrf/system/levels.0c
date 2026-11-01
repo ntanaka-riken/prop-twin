@@ -1,0 +1,1 @@
+bladeMin 5; bladeMax 6; hub 5; rotor 4; wake 3;    // the first mesh test (2.7 M cells before layers)

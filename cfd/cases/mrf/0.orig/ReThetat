@@ -1,0 +1,9 @@
+FoamFile { version 2.0; format ascii; class volScalarField; object ReThetat; }
+// ambient room air: k for 1 % turbulence at 1 m/s, eddy viscosity ratio 1, ReThetat from Langtry-Menter at Tu = 1 %
+dimensions [0 0 0 0 0 0 0]; internalField uniform 584;
+boundaryField
+{
+    "(blades|hub)" { type zeroGradient; }
+    "(motor|cup|scale|board|table)" { type zeroGradient; }
+    room { type inletOutlet; inletValue uniform 584; value uniform 584; }
+}

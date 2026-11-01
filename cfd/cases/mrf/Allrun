@@ -1,0 +1,11 @@
+#!/bin/bash
+# One stage-2 run on a meshed copy of this case:  RPM=3067 DIR=1 MODEL=kOmegaSSTLM NP=144 ./Allrun
+# DIR = +1 forward (about +z, air blown up), -1 reverse.
+cd "${0%/*}" || exit
+NP=${NP:-144}; W_=$(python3 -c "import math; print(${DIR:-1} * ${RPM:?} * 2 * math.pi / 60)")
+cp constant/turbulenceProperties.${MODEL:-kOmegaSSTLM} constant/turbulenceProperties
+sed -i "s/OMEGA/$W_/" constant/MRFProperties
+rm -rf 0; cp -r 0.orig 0; sed -i "s/OMEGA/$W_/" 0/U
+foamDictionary -entry numberOfSubdomains -set $NP system/decomposeParDict >/dev/null
+decomposePar -force > log.decomposePar 2>&1 || exit 1
+srun --mpi=pmix -n $NP simpleFoam -parallel > log.simpleFoam 2>&1

@@ -1,0 +1,17 @@
+FoamFile { version 2.0; format ascii; class dictionary; object controlDict; }
+application simpleFoam; startFrom latestTime; startTime 0; stopAt endTime; endTime 4000; deltaT 1;
+writeControl timeStep; writeInterval 1000; purgeWrite 1; writeFormat binary; writePrecision 8; runTimeModifiable true;
+// forces in N (rho 1.20), moments about the rotor axis; the balance reads -(sum of Fz over the weighed parts) / g
+fo { type forces; libs (forces); rho rhoInf; rhoInf 1.20; CofR (0 0 0); writeControl timeStep; writeInterval 1; log false; }
+functions
+{
+    rotor  { $fo; patches (blades hub); }
+    blades { $fo; patches (blades); }
+    hub    { $fo; patches (hub); }
+    motor  { $fo; patches (motor); }
+    cup    { $fo; patches (cup); }
+    scale  { $fo; patches (scale); }
+    board  { $fo; patches (board); }
+    yPlus  { type yPlus; libs (fieldFunctionObjects); writeControl writeTime; }
+    wallShear { type wallShearStress; libs (fieldFunctionObjects); patches (blades hub); writeControl writeTime; }
+}

@@ -1,0 +1,14 @@
+#!/bin/bash
+# Mesh for stage 2:  LEVEL=0|1|2 LAYERS=abs|rel NP=144 ./Allmesh   (the make_geometry.py STLs in constant/triSurface)
+cd "${0%/*}" || exit
+NP=${NP:-144}; LEVEL=${LEVEL:-0}
+cp system/levels.$LEVEL system/levels; cp system/layers.${LAYERS:-abs} system/layers
+foamDictionary -entry numberOfSubdomains -set $NP system/decomposeParDict >/dev/null
+blockMesh > log.blockMesh 2>&1 || exit 1
+surfaceFeatureExtract > log.surfaceFeatureExtract 2>&1 || exit 1
+decomposePar > log.decomposePar.mesh 2>&1 || exit 1
+srun --mpi=pmix -n $NP snappyHexMesh -parallel -overwrite > log.snappyHexMesh 2>&1 || exit 1
+reconstructParMesh -constant > log.reconstructParMesh 2>&1 || exit 1
+rm -rf processor*
+topoSet > log.topoSet 2>&1 || exit 1
+checkMesh > log.checkMesh 2>&1

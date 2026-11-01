@@ -1,0 +1,16 @@
+FoamFile { version 2.0; format ascii; class dictionary; object fvSolution; }
+// 1 degree of rotation per step: Courant numbers far above 1 in the wall layers, so PIMPLE iterates each step
+solvers
+{
+    "pcorr.*" { solver GAMG; smoother GaussSeidel; tolerance 1e-2; relTol 0; maxIter 50; }
+    p { solver GAMG; smoother GaussSeidel; tolerance 1e-6; relTol 0.05; }
+    pFinal { $p; relTol 0; }
+    "(U|k|omega).*" { solver smoothSolver; smoother symGaussSeidel; tolerance 1e-8; relTol 0.1; }
+    "(U|k|omega)Final" { $U; relTol 0; }
+}
+PIMPLE
+{
+    correctPhi no; nOuterCorrectors 6; nCorrectors 2; nNonOrthogonalCorrectors 1;
+    outerCorrectorResidualControl { p { tolerance 1e-4; relTol 0; } U { tolerance 1e-5; relTol 0; } }
+}
+relaxationFactors { fields { p 0.5; pFinal 1; } equations { "(U|k|omega)" 0.7; ".*Final" 1; } }
